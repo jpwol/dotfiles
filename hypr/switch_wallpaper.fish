@@ -21,5 +21,5 @@ while true
       continue
     end
   end
-  sleep 10
+  sleep 360
 end
