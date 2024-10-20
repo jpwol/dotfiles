@@ -25,6 +25,8 @@ opt.signcolumn = "yes"
 
 opt.backspace = "indent,eol,start"
 
+opt.clipboard = "unnamedplus"
+
 opt.splitright = true
 opt.splitbelow = true
 
