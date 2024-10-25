@@ -5,8 +5,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
-		config = function()
-			-- import mason
+		config = function() -- import mason
 			local mason = require("mason")
 
 			-- import mason-lspconfig
@@ -30,11 +29,7 @@ return {
 				ensure_installed = {
 					"html",
 					"cssls",
-					"svelte",
 					"lua_ls",
-					"graphql",
-					"emmet_ls",
-					"prismals",
 					"pyright",
 					"clangd",
 					"zls",
@@ -48,7 +43,6 @@ return {
 				ensure_installed = {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
-					"isort", -- python formatter
 					"black", -- python formatter
 					"pylint",
 					"eslint_d",
@@ -138,70 +132,51 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
 
-			mason_lspconfig.setup_handlers({
-				-- default handler for installed servers
+			local handlers = {
 				function(server_name)
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
+					lspconfig[server_name].setup({})
 				end,
-				["svelte"] = function()
-					-- configure svelte server
-					lspconfig["svelte"].setup({
-						capabilities = capabilities,
-						on_attach = function(client, bufnr)
-							vim.api.nvim_create_autocmd("BufWritePost", {
-								pattern = { "*.js", "*.ts" },
-								callback = function(ctx)
-									-- Here use ctx.match instead of ctx.file
-									client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-								end,
+
+				["lua_ls"] = function()
+					lspconfig.lua_ls.setup({
+						on_init = function(client)
+							if client.workspace_folders then
+								local path = client.workspace_folders[1].name
+								if
+									vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+								then
+									return
+								end
+							end
+
+							client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+								runtime = {
+									version = "LuaJIT",
+								},
+								workspace = {
+									checkThirdParty = false,
+									library = {
+										vim.env.VIMRUNTIME,
+										"/usr/share/lua/5.4/",
+										"/usr/share/lua/5.4/lgi/",
+										"/usr/share/lua/5.4/lgi/override/",
+										"/usr/lib/lua/5.4/",
+									},
+								},
 							})
 						end,
-					})
-				end,
-				["graphql"] = function()
-					-- configure graphql language server
-					lspconfig["graphql"].setup({
-						capabilities = capabilities,
-						filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-					})
-				end,
-				["emmet_ls"] = function()
-					-- configure emmet language server
-					lspconfig["emmet_ls"].setup({
-						capabilities = capabilities,
-						filetypes = {
-							"html",
-							"typescriptreact",
-							"javascriptreact",
-							"css",
-							"sass",
-							"scss",
-							"less",
-							"svelte",
-						},
-					})
-				end,
-				["lua_ls"] = function()
-					-- configure lua server (with special settings)
-					lspconfig["lua_ls"].setup({
 						capabilities = capabilities,
 						settings = {
 							Lua = {
-								-- make the language server recognize "vim" global
 								diagnostics = {
 									globals = { "vim" },
-								},
-								completion = {
-									callSnippet = "Replace",
 								},
 							},
 						},
 					})
 				end,
 				["clangd"] = function()
-					lspconfig["clangd"].setup({
+					lspconfig.clangd.setup({
 						cmd = { "clangd" },
 						capabilities = capabilities,
 						filetypes = { "c", "cpp" },
@@ -213,13 +188,13 @@ return {
 					})
 				end,
 				["pyright"] = function()
-					lspconfig["pyright"].setup({
+					lspconfig.pyright.setup({
 						capabilities = capabilities,
 						filetypes = { "py" },
 					})
 				end,
 				["hyprls"] = function()
-					lspconfig["hyprls"].setup({
+					lspconfig.hyprls.setup({
 						pattern = { "*.hl", "hypr*.conf" },
 						callback = function(event)
 							print(string.format("starting hyprls for %s", vim.inspect(event)))
@@ -231,7 +206,10 @@ return {
 						end,
 					})
 				end,
-			})
+			}
+			mason_lspconfig.setup_handlers(handlers)
+
+			require("neodev").setup()
 		end,
 	},
 	{
@@ -243,9 +221,6 @@ return {
 			lint.linters_by_ft = {
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
-				javascriptreact = { "eslint_d" },
-				typescriptreact = { "eslint_d" },
-				svelte = { "eslint_d" },
 				python = { "pylint" },
 				c = { "cpplint" },
 				cpp = { "cpplint" },
@@ -256,6 +231,7 @@ return {
 
 			local eslint = lint.linters.eslint_d
 			local cpplint = lint.linters.cpplint
+			local luacheck = lint.linters.luacheck
 
 			eslint.args = {
 				"--no-warn-ignored",
@@ -274,6 +250,10 @@ return {
 
 			cpplint.args = {
 				"--filter=-legal/copyright",
+			}
+
+			luacheck.args = {
+				"global = false",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
