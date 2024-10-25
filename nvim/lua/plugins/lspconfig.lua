@@ -36,6 +36,7 @@ return {
 					"hyprls",
 					"bashls",
 					"cmake",
+					"texlab",
 				},
 			})
 
