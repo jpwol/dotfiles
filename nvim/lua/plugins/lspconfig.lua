@@ -288,7 +288,15 @@ return {
 			local lspkind = require("lspkind")
 
 			-- load vs-code like snippets from plugins (e.g. friendly-snippets)
+			luasnip.setup({
+				enable_autosnippets = true,
+			})
+			luasnip.config.set_config({
+				region_check_events = "InsertEnter",
+				delete_check_events = "InsertLeave",
+			})
 			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 
 			cmp.setup({
 				completion = {
@@ -299,19 +307,42 @@ return {
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-					["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-					["<C-e>"] = cmp.mapping.abort(), -- close completion window
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
-				}),
+				mapping = {
+					["<C-j>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+
+					["<C-k>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+				},
+				-- mapping = cmp.mapping.preset.insert({
+				-- 	["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+				-- 	["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+				-- 	["<C-b>"] = cmp.mapping.scroll_docs(-4),
+				-- 	["<C-f>"] = cmp.mapping.scroll_docs(4),
+				-- 	["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+				-- 	["<C-e>"] = cmp.mapping.abort(), -- close completion window
+				-- 	["<CR>"] = cmp.mapping.confirm({ select = false }),
+				-- }),
 				-- sources for autocompletion
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" }, -- lsp
 					{ name = "luasnip" }, -- snippets
+					{ name = "nvim_lsp" }, -- lsp
 					{ name = "buffer" }, -- text within current buffer
 					{ name = "path" }, -- file system paths
 				}),
