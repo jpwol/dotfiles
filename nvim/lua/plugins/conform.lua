@@ -14,9 +14,9 @@ return {
 				markdown = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				c = { "clang-format" },
-				cpp = { "clang-format" },
-				cs = { "clang-format" },
+				c = {},
+				cpp = {},
+				cs = {},
 				cmake = { "cmakelang" },
 			},
 			format_on_save = {

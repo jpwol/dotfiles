@@ -47,7 +47,6 @@ return {
 					"black", -- python formatter
 					"pylint",
 					"eslint_d",
-					"clang-format",
 					"luacheck",
 					"cpplint",
 					"cmakelang",
@@ -178,7 +177,7 @@ return {
 				end,
 				["clangd"] = function()
 					lspconfig.clangd.setup({
-						cmd = { "clangd" },
+						cmd = { "clangd", "--fallback-style=Google" },
 						capabilities = capabilities,
 						filetypes = { "c", "cpp" },
 						settings = {
