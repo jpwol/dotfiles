@@ -37,6 +37,7 @@ return {
 				"tmux",
 				"zig",
 				"hyprlang",
+				"go",
 			},
 			incremental_selection = {
 				enable = true,
