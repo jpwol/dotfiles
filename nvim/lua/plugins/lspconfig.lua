@@ -246,8 +246,16 @@ return {
 				["jsonls"] = function()
 					lspconfig.jsonls.setup({
 						capabilities = capabilities,
-						cmd = { "vsccode-json-language-server" },
 						filetypes = { "json", "jsonc" },
+						settings = {
+							json = {
+								validate = { enable = true },
+								format = { enable = true },
+								schemas = {},
+								allowComments = true,
+								trailingCommas = "ignore",
+							},
+						},
 					})
 				end,
 			}
