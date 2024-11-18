@@ -29,6 +29,7 @@ return {
 				ensure_installed = {
 					"html",
 					"cssls",
+					"jsonls",
 					"lua_ls",
 					"pyright",
 					"clangd",
@@ -44,6 +45,7 @@ return {
 			mason_tool_installer.setup({
 				ensure_installed = {
 					"prettier", -- prettier formatter
+					"jsonlint",
 					"stylua", -- lua formatter
 					"black", -- python formatter
 					"pylint",
@@ -241,6 +243,13 @@ return {
 						filetypes = { "go" },
 					})
 				end,
+				["jsonls"] = function()
+					lspconfig.jsonls.setup({
+						capabilities = capabilities,
+						cmd = { "vsccode-json-language-server" },
+						filetypes = { "json", "jsonc" },
+					})
+				end,
 			}
 			mason_lspconfig.setup_handlers(handlers)
 
@@ -256,6 +265,8 @@ return {
 			lint.linters_by_ft = {
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
+				json = { "jsonlint" },
+				jsonc = { "jsonlint" },
 				python = { "pylint" },
 				c = { "cpplint" },
 				cpp = { "cpplint" },
