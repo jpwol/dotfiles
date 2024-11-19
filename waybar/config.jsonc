@@ -4,14 +4,17 @@
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
   "height": 16, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
   "spacing": 0, // Gaps between modules (4px)
+  "margin-top": 5,
+  "margin-bottom": 0,
+  "margin-left": 5,
+  "margin-right": 5,
 
   // Load modules
   "include": ["~/.config/waybar/modules.jsonc"],
 
   // Choose the order of the modules
-  "modules-left": ["sway/workspaces"],
+  "modules-left": ["custom/launcher", "sway/workspaces"],
   "modules-center": [
     // "sway/window"
     "clock",
@@ -20,9 +23,14 @@
     // "mpd",
     // "idle_inhibitor",
     "pulseaudio",
+    "custom/separator",
     "network",
+    "custom/separator",
     "memory",
+    "disk",
+    "cpu",
     "temperature",
+    "custom/separator",
     "tray",
   ],
 }
