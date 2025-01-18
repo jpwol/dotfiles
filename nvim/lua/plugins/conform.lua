@@ -19,6 +19,7 @@ return {
 				cpp = {},
 				cs = {},
 				cmake = { "cmakelang" },
+				java = { "trivy" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

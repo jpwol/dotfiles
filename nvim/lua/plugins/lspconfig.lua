@@ -34,11 +34,11 @@ return {
 					"pyright",
 					"clangd",
 					"zls",
-					"hyprls",
 					"bashls",
 					"cmake",
 					"texlab",
 					"gopls",
+					"jdtls",
 				},
 			})
 
@@ -54,6 +54,7 @@ return {
 					"cpplint",
 					"cmakelang",
 					"cmakelint",
+					"trivy",
 				},
 			})
 		end,
@@ -193,7 +194,7 @@ return {
 				["pyright"] = function()
 					lspconfig.pyright.setup({
 						capabilities = capabilities,
-						filetypes = { "py" },
+						cmd = { "pyright" },
 					})
 				end,
 				["hyprls"] = function()
@@ -256,6 +257,13 @@ return {
 								trailingCommas = "ignore",
 							},
 						},
+					})
+				end,
+				["jdtls"] = function()
+					lspconfig.jdtls.setup({
+						capabilities = capabilities,
+						filetypes = { "java" },
+						cmd = { "jdtls" },
 					})
 				end,
 			}

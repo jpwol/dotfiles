@@ -7,8 +7,13 @@ return {
 		-- Optional; default configuration will be used if setup isn't called.
 		config = function()
 			require("everforest").setup({
-				background = "medium",
+				background = "hard",
 				italics = true,
+				sign_column_background = "none",
+				ui_contrast = "low",
+				dim_inactive_windows = false,
+				diagnostic_text_highlight = true,
+				spell_foreground = false,
 			})
 			vim.cmd([[colorscheme everforest]])
 		end,

@@ -26,3 +26,5 @@ keymap("n", "<leader>l", "<C-w>l", { desc = "Move to right window" })
 keymap("n", "<leader>j", "<C-w>j", { desc = "Move to window above" })
 keymap("n", "<leader>k", "<C-w>k", { desc = "Move to window below" })
 keymap("n", "<leader>w", "<C-w>w", { desc = "Move to next window" })
+
+keymap("t", "<M-c>", "<C-\\><C-n>")

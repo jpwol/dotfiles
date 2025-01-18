@@ -31,3 +31,11 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("term-open", { clear = true }),
+	callback = function()
+		opt.number = false
+		opt.relativenumber = false
+	end,
+})
