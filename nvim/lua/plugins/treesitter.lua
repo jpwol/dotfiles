@@ -37,7 +37,6 @@ return {
 				"markdown_inline",
 				"tmux",
 				"zig",
-				"hyprlang",
 				"go",
 			},
 			incremental_selection = {

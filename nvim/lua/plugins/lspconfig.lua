@@ -48,10 +48,12 @@ return {
 					"jsonlint",
 					"stylua", -- lua formatter
 					"black", -- python formatter
-					"pylint",
-					"eslint_d",
-					"luacheck",
-					"cpplint",
+					"pylint", -- python linter
+					"debugpy", -- python debugger
+					"eslint_d", -- javascript linter (HATE)
+					"luacheck", -- lua linter
+					"cpplint", -- c, c++ linter
+					"codelldb", -- c, c++, rust, zig debugger
 					"cmakelang",
 					"cmakelint",
 					"trivy",
@@ -194,7 +196,7 @@ return {
 				["pyright"] = function()
 					lspconfig.pyright.setup({
 						capabilities = capabilities,
-						cmd = { "pyright" },
+						filetypes = { "python" },
 					})
 				end,
 				["hyprls"] = function()

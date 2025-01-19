@@ -4,6 +4,13 @@ function setTerm()
 	local os_name = vim.loop.os_uname().sysname
 	if os_name == "Windows_NT" then
 		vim.opt.shell = "pwsh"
+		vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+		vim.opt.shellquote = ""
+		vim.opt.shellxquote = ""
+		vim.opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s"
+		vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; cat %s"
+		vim.opt.shellslash = true
+		vim.opt.shellxescape = ""
 	elseif os_name == "Linux" then
 		vim.opt.shell = "/bin/fish"
 	end
