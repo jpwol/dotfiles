@@ -39,6 +39,7 @@ return {
 					"texlab",
 					"gopls",
 					"jdtls",
+					"marksman",
 				},
 			})
 
@@ -145,35 +146,29 @@ return {
 
 				["lua_ls"] = function()
 					lspconfig.lua_ls.setup({
-						on_init = function(client)
-							if client.workspace_folders then
-								local path = client.workspace_folders[1].name
-								if
-									vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc")
-								then
-									return
-								end
-							end
-
-							client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-								runtime = {
-									version = "LuaJIT",
-								},
-								workspace = {
-									checkThirdParty = false,
-									library = {
-										vim.env.VIMRUNTIME,
-										"/usr/share/lua/5.4/",
-										"/usr/share/lua/5.4/lgi/",
-										"/usr/share/lua/5.4/lgi/override/",
-										"/usr/lib/lua/5.4/",
-									},
-								},
-							})
-						end,
-						capabilities = capabilities,
 						settings = {
 							Lua = {
+								runtime = {
+									version = "Lua 5.4",
+									path = {
+										"?.lua",
+										"?/init.lua",
+										"?/?.lua",
+										"/usr/share/lua/5.4/?.lua",
+										"/usr/share/lua/5.4/?/init.lua",
+										vim.fn.expand("~/.luarocks/lib/lua/5.4/"),
+									},
+								},
+								workspace = {
+									library = {
+										"?.lua",
+										"/home/josh/.luarocks/share/lua/5.4",
+										"/home/josh/.luarocks/lib/lua/5.4",
+										vim.fn.expand("$VIMRUNTIME/lua"),
+										vim.api.nvim_get_runtime_file("", true),
+									},
+									checkThirdParty = false,
+								},
 								diagnostics = {
 									globals = { "vim" },
 								},
@@ -266,6 +261,13 @@ return {
 						capabilities = capabilities,
 						filetypes = { "java" },
 						cmd = { "jdtls" },
+					})
+				end,
+				["marksman"] = function()
+					lspconfig.marksman.setup({
+						capabilities = capabilities,
+						filetypes = { "markdown" },
+						cmd = { "marksman" },
 					})
 				end,
 			}

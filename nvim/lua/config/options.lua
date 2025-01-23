@@ -1,9 +1,5 @@
 local opt = vim.opt
 
-vim.filetype.add({
-	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-})
-
 opt.number = true
 opt.relativenumber = true
 
