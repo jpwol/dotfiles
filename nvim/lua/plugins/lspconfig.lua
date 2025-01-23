@@ -26,12 +26,13 @@ return {
 
 			mason_lspconfig.setup({
 				-- list of servers for mason to install
+				automatic_installation = true,
 				ensure_installed = {
 					"html",
 					"cssls",
 					"jsonls",
 					"lua_ls",
-					"pyright",
+					"basedpyright",
 					"clangd",
 					"zls",
 					"bashls",
@@ -188,10 +189,20 @@ return {
 						},
 					})
 				end,
-				["pyright"] = function()
-					lspconfig.pyright.setup({
+				["basedpyright"] = function()
+					lspconfig.basedpyright.setup({
 						capabilities = capabilities,
 						filetypes = { "python" },
+						settings = {
+							basedpyright = {
+								analysis = {
+									diagnosticMode = "openFilesOnly",
+									inlayHints = {
+										callArgumentNames = true,
+									},
+								},
+							},
+						},
 					})
 				end,
 				["hyprls"] = function()
@@ -298,6 +309,7 @@ return {
 			local eslint = lint.linters.eslint_d
 			local cpplint = lint.linters.cpplint
 			local luacheck = lint.linters.luacheck
+			local pylint = lint.linters.pylint
 
 			eslint.args = {
 				"--no-warn-ignored",
@@ -320,6 +332,16 @@ return {
 
 			luacheck.args = {
 				"global = false",
+			}
+
+			pylint.args = {
+				"-f",
+				"json",
+				"--from-stdin",
+				function()
+					return vim.api.nvim_buf_get_name(0)
+				end,
+				"--disable=C0114,C0116",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
