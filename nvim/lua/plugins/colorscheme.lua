@@ -15,7 +15,6 @@ return {
 				diagnostic_text_highlight = true,
 				spell_foreground = false,
 			})
-			vim.cmd([[colorscheme everforest]])
 		end,
 	},
 	{
@@ -45,6 +44,11 @@ return {
 		opts = {
 			style = "night",
 		},
+		config = function()
+			require("tokyonight").setup({
+				vim.cmd([[colorscheme tokyonight]]),
+			})
+		end,
 	},
 	{
 		"rose-pine/neovim",
@@ -52,5 +56,10 @@ return {
 		opts = {
 			variant = "main",
 		},
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = false,
 	},
 }

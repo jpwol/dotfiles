@@ -41,6 +41,7 @@ return {
 					"gopls",
 					"jdtls",
 					"marksman",
+					"taplo",
 				},
 			})
 
@@ -279,6 +280,12 @@ return {
 						capabilities = capabilities,
 						filetypes = { "markdown" },
 						cmd = { "marksman" },
+					})
+				end,
+				["taplo"] = function()
+					lspconfig.taplo.setup({
+						capabilities = capabilities,
+						filetypes = { "toml" },
 					})
 				end,
 			}
