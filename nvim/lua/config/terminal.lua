@@ -12,7 +12,7 @@ function setTerm()
 		vim.opt.shellslash = true
 		vim.opt.shellxescape = ""
 	elseif os_name == "Linux" then
-		vim.opt.shell = "/bin/fish"
+		vim.opt.shell = "/usr/bin/zsh"
 	end
 end
 
