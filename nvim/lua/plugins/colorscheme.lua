@@ -41,13 +41,20 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
-		opts = {
-			style = "night",
-		},
-		config = function()
+		opts = function()
 			require("tokyonight").setup({
-				vim.cmd([[colorscheme tokyonight]]),
+				style = "night",
+				styles = {
+					keywords = { italic = true },
+				},
+				on_highlights = function(hl, c)
+					hl.DiagnosticUnderlineWarn.undercurl = false
+					hl.DiagnosticUnderlineError.undercurl = false
+					hl.DiagnosticUnderlineHint.undercurl = false
+					hl.DiagnosticUnderlineInfo.undercurl = false
+				end,
 			})
+			vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 	{
