@@ -1,1 +1,4 @@
 lazy-lock.json
+.config/zsh/.antidote
+.config/zsh/zsh-bench
+.home/.tmux/plugins/*

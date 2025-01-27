@@ -1,0 +1,4 @@
+[Default]
+save_dir=~/Pictures/Screenshots/
+save_filename_format=ss-%Y%m%d.png
+show_panel=false

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "source": "~/.config/fastfetch/arch.txt",
+    "type": "file",
+    "position": "top",
+    "padding": {
+      "right": 0,
+    },
+  },
+  "display": {
+    "separator": "",
+    "key": {
+      "width": 12,
+    },
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "{#32}╭───────╮",
+    },
+    {
+      "type": "title",
+      "key": "│       │\u001b[7D{#34} USR",
+      "format": "{6}{7}{8}",
+      "keyColor": "32",
+    },
+    {
+      "type": "os",
+      "key": "│       │\u001b[7D{#34}󰣇 OS",
+      "format": "{3}",
+      "keyColor": "32",
+    },
+    {
+      "type": "kernel",
+      "key": "│       │\u001b[7D{#34} KER",
+      "format": "{2}",
+      "keyColor": "32",
+    },
+    {
+      "type": "terminal",
+      "key": "│       │\u001b[7D{#34} TER",
+      "format": "{}",
+      "keyColor": "32",
+    },
+    {
+      "type": "shell",
+      "format": "{}",
+      "key": "│       │\u001b[7D{#34} SH ",
+      "keyColor": "32",
+    },
+    {
+      "type": "packages",
+      "key": "│       │\u001b[7D{#34} PKG",
+      "format": "{} (pacman)",
+      "keyColor": "32",
+    },
+    {
+      "type": "memory",
+      "key": "│       │\u001b[7D{#34}󰍛 MEM",
+      "format": "{1} / {2}",
+      "keyColor": "32",
+    },
+    {
+      "type": "disk",
+      "key": "│       │\u001b[7D{#34} DSK",
+      "format": "{1} / {2}",
+      "keyColor": "32",
+    },
+    {
+      "type": "custom",
+      "format": "{#32}├───────┤",
+    },
+
+    {
+      "type": "colors",
+      "key": "│       │\u001b[7D{#33} COL",
+      "keyColor": "32",
+      "symbol": "square",
+    },
+    {
+      "type": "custom",
+      "format": "{#32}╰───────╯",
+    },
+  ],
+}

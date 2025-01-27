@@ -1,0 +1,30 @@
+theme = tokyonight_night
+
+font-family = "JetBrainsMono Nerd Font"
+
+font-style = SemiBold
+font-style-bold = ExtraBold
+font-style-italic = SemiBold Italic
+
+window-theme = auto
+window-colorspace = display-p3
+window-decoration = false
+
+gtk-tabs-location = hidden
+
+shell-integration-features = no-cursor
+
+cursor-style = block
+cursor-style-blink = false
+
+keybind = ctrl+a>v=new_split:right
+keybind = ctrl+a>x=new_split:down
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>n=next_tab
+
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+keybind = ctrl+a>l=goto_split:right
+
+initial-command = fastfetch; exec zsh

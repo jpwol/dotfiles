@@ -60,6 +60,7 @@ return {
 					"cmakelang",
 					"cmakelint",
 					"trivy",
+					"shellcheck",
 				},
 			})
 		end,
@@ -70,7 +71,7 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			{ "folke/neodev.nvim", opts = {} },
+			{ "folke/lazydev.nvim", opts = {} },
 		},
 		config = function()
 			-- import lspconfig plugin
@@ -275,10 +276,23 @@ return {
 						filetypes = { "toml" },
 					})
 				end,
+				["bashls"] = function()
+					lspconfig.bashls.setup({
+						capabilities = capabilities,
+						filetypes = { "bash", "zsh", "sh" },
+						cmd = { "bash-language-server", "start" },
+						settings = {
+							bashIde = {
+								logLevel = "error",
+								enableSourceErrorDiagnostics = false,
+							},
+						},
+					})
+				end,
 			}
 			mason_lspconfig.setup_handlers(handlers)
 
-			require("neodev").setup()
+			require("lazydev").setup()
 		end,
 	},
 	{
@@ -298,6 +312,7 @@ return {
 				cs = { "trivy" },
 				lua = { "luacheck" },
 				cmake = { "cmakelint" },
+				bash = { "shellcheck" },
 			}
 
 			local eslint = lint.linters.eslint_d

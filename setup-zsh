@@ -1,0 +1,223 @@
+#!/usr/bin/zsh
+
+# Require sudo password
+if ! sudo -v; then
+  exit 1
+fi
+
+# Colors
+GREEN="\033[32m"
+BLUE="\033[36m"
+RED="\033[31m"
+
+RESET="\033[0m"
+
+# Global Variables
+CONFIG_DIR=""
+CONFIG_DIR_TO_LINK=""
+DOTFILES_DIR=""
+DOTFILES_CONFIG=""
+D_CONFIG_SUBDIRS=""
+
+COMPUTER_TYPE=""
+
+echo "Beginning install script. You will be prompted to take action during the script process.\n"
+read "ans?Is this a desktop computer (y/n)?"
+if [[ $ans == "y" ]]; then
+  COMPUTER_TYPE="desktop"
+else
+  COMPUTER_TYPE="laptop"
+fi
+
+# Set CONFIG_DIR for symlink purposes later
+echo "Searching for .config directory..."
+CONFIG_DIR=$(find $HOME -maxdepth 1 -name ".config" -type d)
+if [[ $CONFIG_DIR ]]; then
+  echo "$CONFIG_DIR - ${GREEN}found${RESET}"
+else
+  echo "$HOME/.config - ${RED}not found${RESET}"
+  read "answer?Would you like to create it now (y/n)?"
+  if [[ $answer == "n" ]]; then
+    echo "\n${RED}Exiting script${RESET}. Either create config directory at"
+    echo "${BLUE}$HOME/.config${RESET} or let script handle it for you to continue."
+    
+    exit 0
+  else
+    echo "Creating config directory at ${BLUE}$HOME/.config${RESET}"
+    mkdir -p $HOME/.config
+    CONFIG_DIR=$(find $HOME -maxdepth 1 -name ".config" -type d)
+  fi
+fi
+
+# Make sure dotfiles has been cloned in the correct place
+echo "\nFinding location of dotfiles directory..."
+DOTFILES_DIR=$(find $HOME -maxdepth 1 -name "dotfiles" -type d)
+if [[ $DOTFILES_DIR ]]; then
+  echo "$DOTFILES_DIR - ${GREEN}found${RESET}"
+else
+  echo "$HOME/dotfiles - ${RED}not found${RESET}"
+  echo "${RED}Exiting script${RESET}. Please make sure to clone dotfiles directory under ${BLUE}$HOME${RESET}"
+  exit 0
+fi
+
+# Make sure dotfiles has .config directory within
+DOTFILES_CONFIG=$(find $DOTFILES_DIR -maxdepth 1 -name ".config" -type d)
+if [[ $DOTFILES_CONFIG ]]; then
+  echo "$DOTFILES_CONFIG - ${GREEN}found${RESET}\n"
+  D_CONFIG_SUBDIRS=($DOTFILES_CONFIG/*(/))
+  echo "Finding directories within ${BLUE}$DOTFILES_CONFIG${RESET}..."
+  for item in $D_CONFIG_SUBDIRS; do
+    echo "$item - ${GREEN}found${RESET}"
+  done
+else
+  echo "${RED}Exiting script${RESET}. No ${BLUE}.config${RESET} within ${BLUE}$DOTFILES_DIR${RESET}"
+  exit 1
+fi
+
+echo "\nSearching $CONFIG_DIR for existing directories..."
+for item in ${D_CONFIG_SUBDIRS##*/}; do
+  if [[ -d "$CONFIG_DIR/$item" ]]; then
+    echo "$CONFIG_DIR/$item - ${GREEN}found${RESET}"
+    CONFIG_DIR_TO_LINK+=("$CONFIG_DIR/$item")
+  else
+    echo "$CONFIG_DIR/$item - ${RED}not found${RESET}"
+    CONFIG_DIR_TO_LINK+=("$CONFIG_DIR/$item")
+  fi
+done
+
+echo "\n${RED}Warning${RESET}: The next steps will modify your system by creating directories/symlinks/files
+as well as ${BLUE}installing packages${RESET}."
+read "answer?Are you ready (y/n)?"
+if [[ $answer == "n" ]]; then
+  echo "${RED}Exiting script${RESET}. You may run the script again to pick up where you left off."
+  exit 0
+else
+  printf "${GREEN}Okay${RESET}. Beginning system modifications...\n\n"
+fi
+
+if {command -v xbps-install}&>/dev/null; then
+  sudo xbps-install -Syu
+  sudo xbps-install linux-firmware-amd NetworkManager dbus dbus-devel dbus-libs dbus-xll seatd elogind polkit
+else
+  echo "${RED}Warning${RESET}: command xbps-install not available."
+  echo "${RED}Exiting script.${RESET}"
+  exit 0
+fi
+
+echo "${BLUE}BEGINNING SERVICE ACTIVATION...${RESET}"
+if [[ -d "/etc/sv" ]]; then
+  SERVICES=(/etc/sv/*)
+  if [[ -d "/var/services" ]]; then
+    ACTIVE_SERVICES=(/var/services/*)
+    for active_serv in $ACTIVE_SERVICES; do
+      for serv in $SERVICES; do
+        if [[ ${serv##*/} == ${active_serv##*/} ]]; then
+          index=${SERVICES[(ie)$serv]}
+          SERVICES[$index]=()
+        fi
+      done
+    done
+
+    for serv in ${SERVICES}; do
+      sudo ln -s $serv /var/services/${serv##*/}
+      echo "${GREEN}Activated${RESET} service for ${BLUE}$serv${RESET}"
+    done
+  fi
+else
+  echo "${RED}Warning${RESET}: Cannot find /etc/sv directory."
+  echo "${RED}Exiting script.${RESET}"
+fi
+
+if {command -v xbps-install}&>/dev/null; then
+  sudo xbps-install mesa-dri zsh sway xdg-user-dirs xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils neovim ghostty fastfetch swappy waybar wofi zathura texlive python3 LuaJIT lua54 luarocks-lua54 nodejs pnpm go qt5-wayland firefox xorg-server-xwayland noto-fonts-ttf nerd-fonts-symbols-ttf liberation-fonts-ttf gtk+3 network-manager-applet adwaita-icon-theme pipewire pipewire-pulse pavucontrol libspa-bluetooth alsa-pipewire libjack-pipewire bluez openjdk21-21 openjdk21-jre
+fi
+
+printf "\n${BLUE}BEGINNING SYMLINK PROCESS${RESET}\n"
+printf "${RED}Warning${RESET}: This process might remove existing config directories to replace them with symlinks.\n"
+read "answer?Continue (y/n)?"
+if [[ $answer == "n" ]]; then
+  echo "${RED}Exiting script.${RESET}"
+  exit 0
+fi
+
+for dir in $CONFIG_DIR_TO_LINK; do
+  if [[ $COMPUTER_TYPE == "desktop" ]]; then
+    if [[ -d $dir ]]; then
+      rm -rf $dir
+      if [[ ${dir##*} == "sway" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/sway-desktop $dir
+      elif [[ ${dir##*} == "waybar" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/waybar-desktop $dir
+      elif [[ ${dir##*} == "fastfetch" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/fastfetch-desktop $dir
+      else
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/} $dir
+      fi
+    else
+      if [[ ${dir##*} == "sway" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/sway-desktop $dir
+      elif [[ ${dir##*} == "waybar" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/waybar-desktop $dir
+      elif [[ ${dir##*} == "fastfetch" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/fastfetch-desktop $dir
+      else
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/} $dir
+      fi
+    fi
+  elif [[ $COMPUTER_TYPE == "laptop" ]] then
+    if [[ -d $dir ]]; then
+      rm -rf $dir
+      if [[ ${dir##*} == "sway" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/sway-desktop $dir
+      elif [[ ${dir##*} == "waybar" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/waybar-desktop $dir
+      elif [[ ${dir##*} == "fastfetch" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/fastfetch-desktop $dir
+      else
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/} $dir
+      fi
+    else
+      if [[ ${dir##*} == "sway" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/sway-desktop $dir
+      elif [[ ${dir##*} == "waybar" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/waybar-desktop $dir
+      elif [[ ${dir##*} == "fastfetch" ]]; then
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/}/fastfetch-desktop $dir
+      else
+        sudo ln -s $DOTFILES_CONFIG/${dir##*/} $dir
+      fi
+    fi
+  fi
+done
+
+if [[ -d "$HOME/Pictures" ]]; then
+  if [[ ! -d "$HOME/Pictures/Wallpapers" ]]; then
+    sudo ln -s $DOTFILES_DIR/.wallpapers $HOME/Pictures/Wallpapers
+  else
+    rm -rf $HOME/Pictures/Wallpapers
+    sudo ln -s $DOTFILES_DIR/.wallpapers $HOME/Pictures/Wallpapers
+  fi
+fi
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  if [[ ! -d "$HOME/.local/bin/.scripts" ]]; then
+    sudo ln -s $DOTFILES_DIR/.scripts $HOME/.local/bin/.scripts
+  else
+    rm -rf $HOME/.local/bin/.scripts
+    sudo ln -s $DOTFILES_DIR/.scripts $HOME/.local/bin/.scripts
+  fi
+fi
+
+if [[ -d "$HOME/.tmux" ]]; then
+  rm -rf .tmux
+  sudo ln -s $DOTFILES_DIR/.home/.tmux $HOME/.tmux
+else
+  sudo ln -s $DOTFILES_DIR/.home/.tmux $HOME/.tmux
+fi
+
+if [[ -e "$HOME/.tmux.conf" ]]; then
+  rm -rf .tmux.conf
+  sudo ln -s $DOTFILES_DIR/.home/.tmux.conf $HOME/.tmux.conf
+else
+  sudo ln -s $DOTFILES_DIR/.home/.tmux.conf $HOME/.tmux.conf
+fi
