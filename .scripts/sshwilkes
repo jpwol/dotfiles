@@ -18,3 +18,8 @@ if command -v openfortivpn &>/dev/null; then
 fi
 
 sudo pkill openfortivpn
+if ! pgrep -x "openfortivpn"; then
+  echo "VPN has been shut down successfully"
+else
+  echo "VPN is still running..."
+fi
