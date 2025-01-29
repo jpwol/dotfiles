@@ -21,14 +21,12 @@
   ],
   "modules-right": [
     "pulseaudio",
-    "custom/separator",
     "network",
-    "custom/separator",
     "memory",
     "disk",
     "cpu",
     "temperature",
-    "custom/separator",
+    "battery",
     "tray",
   ],
 }

@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-  background-color: @bg;
+  background-color: transparent;
   border-radius: 20px;
 }
 
@@ -17,9 +17,10 @@ window#waybar {
 
 #workspaces {
   background-color: @bg;
-  margin: 5px 0 5px 0;
+  margin: 0 0 0 0;
   border-radius: 20px;
   min-height: 0px;
+  padding: 5px 4px 5px 4px;
 }
 #workspaces button {
   background-color: #859289;
@@ -27,7 +28,7 @@ window#waybar {
   margin: 0 2px 0 2px;
   padding: 0;
   color: #ffffff;
-  min-height: 0px;
+  min-height: 20px;
   min-width: 20px;
 }
 
@@ -64,7 +65,7 @@ window#waybar {
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -75,8 +76,10 @@ window#waybar {
 #clock {
   background-color: @bg;
   color: @font;
+  margin: 0 0 0 0;
+  border-radius: 20px;
+  padding: 0 10px 0 10px;
   font-weight: bold;
-  margin: 5px 0 7px 0;
 }
 
 @keyframes blink {
@@ -93,8 +96,10 @@ label:focus {
 #pulseaudio {
   background-color: @bg;
   color: @font;
+  border-radius: 20px;
+  padding: 0 10px 0 10px;
   font-weight: bold;
-  margin-top: 5px;
+  margin: 0 5px 0 0;
 }
 
 #pulseaudio.muted {
@@ -108,9 +113,10 @@ label:focus {
 #network {
   background-color: @bg;
   color: @font;
-  padding: 0 10px 0 0;
+  border-radius: 20px;
+  margin: 0 5px 0 5px;
+  padding: 0 7px 0 9px;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 #network.disconnected {
@@ -124,23 +130,27 @@ label:focus {
 #memory {
   background-color: @bg;
   color: @font;
-  padding: 0 5px 0 0;
+  border-radius: 20px 0 0 20px;
+  margin: 0 0 0 5px;
+  padding: 0 5px 0 7px;
   font-weight: bold;
-  margin-top: 5px;
-}
-
-#cpu {
-  color: @font;
-  font-weight: bold;
-  padding: 0 5px 0 5px;
-  margin-top: 5px;
 }
 
 #disk {
+  background-color: @bg;
   color: @font;
   font-weight: bold;
   padding: 0 5px 0 5px;
-  margin-top: 5px;
+  margin: 0 0 0 0;
+}
+
+#cpu {
+  background-color: @bg;
+  color: @font;
+  border-radius: 0 20px 20px 0;
+  font-weight: bold;
+  margin: 0 5px 0 0;
+  padding: 0 7px 0 5px;
 }
 
 #temperature {
@@ -155,6 +165,14 @@ label:focus {
   background-color: #eb4d4b;
 }
 
+#battery {
+  background-color: @bg;
+  color: @font;
+  border-radius: 20px;
+  padding: 0 7px 0 10px;
+  font-weight: bold;
+}
+
 #custom-media {
   background-color: #66cc99;
   color: #2a5c45;
@@ -167,10 +185,9 @@ label:focus {
 
 #tray {
   background-color: @bg;
+  color: @font;
   border-radius: 20px;
-  margin-right: 10px;
-  margin-top: 5px;
-  padding: 0 5px 0 0;
+  padding: 0 10px 0 10px;
 }
 
 #tray > .passive {
