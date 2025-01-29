@@ -102,6 +102,18 @@ input "type:keyboard" {
   xkb_options "ctrl:nocaps"
 }
 
+input "type:touchpad" {
+  dwt enabled
+  tap enabled
+  middle_emulation enabled
+}
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
+bindgesture pinch:inward+up move up 50px
+bindgesture pinch:inward+down move down 50px
+bindgesture pinch:inward+left move left 50px
+bindgesture pinch:inward+right move right 50px
 ### Key bindings
 #
 # Basics:
