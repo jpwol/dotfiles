@@ -129,8 +129,11 @@ else
 fi
 
 if {command -v xbps-install}&>/dev/null; then
-  sudo xbps-install mesa-dri zsh sway xdg-user-dirs xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils neovim ghostty fastfetch swappy waybar wofi zathura texlive python3 LuaJIT lua54 luarocks-lua54 nodejs pnpm go qt5-wayland firefox xorg-server-xwayland noto-fonts-ttf nerd-fonts-symbols-ttf liberation-fonts-ttf gtk+3 network-manager-applet adwaita-icon-theme pipewire pipewire-pulse pavucontrol libspa-bluetooth alsa-pipewire libjack-pipewire bluez openjdk21-21 openjdk21-jre
+  sudo xbps-install mesa-dri zsh swayfx xdg-user-dirs xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr xdg-utils neovim ghostty fastfetch swappy Waybar wofi zathura texlive python3 LuaJIT lua54 luarocks-lua54 nodejs pnpm go qt5-wayland firefox xorg-server-xwayland noto-fonts-ttf nerd-fonts-symbols-ttf liberation-fonts-ttf gtk+3 network-manager-applet adwaita-icon-theme pipewire pavucontrol libspa-bluetooth alsa-pipewire libjack-pipewire bluez openjdk21-21 openjdk21-jre yazi
 fi
+
+printf "\n${GREEN}RUNNING CMD: ${BLUE}xdg-user-dirs-update${RESET}\n"
+xdg-user-dirs-update
 
 printf "\n${BLUE}BEGINNING SYMLINK PROCESS${RESET}\n"
 printf "${RED}Warning${RESET}: This process might remove existing config directories to replace them with symlinks.\n"
@@ -199,7 +202,8 @@ if [[ -d "$HOME/Pictures" ]]; then
   fi
 fi
 
-if [[ -d "$HOME/.local/bin" ]]; then
+if [[ -d "$HOME/.local" ]]; then
+  mkdir -p $HOME/.local/bin
   if [[ ! -d "$HOME/.local/bin/.scripts" ]]; then
     sudo ln -s $DOTFILES_DIR/.scripts $HOME/.local/bin/.scripts
   else
