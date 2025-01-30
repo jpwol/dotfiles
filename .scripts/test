@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+
+directory="$HOME/Pictures/Wallpapers/"
+
+wallpapers=$(ls -l $directory)
+
+# for bg in $wallpapers; do
+#   echo "${bg%.*}"
+# done
+
+echo $wallpapers[1]
