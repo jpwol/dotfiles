@@ -18,7 +18,7 @@ set $term ghostty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu rofi -show drun 
+set $menu wofi --show drun 
 
 set $bg_set /home/josh/.config/sway/scripts/bg_set
 
@@ -42,10 +42,10 @@ client.placeholder        #1d2021 #282828 #fbf1c7 #282828 #1f2335
 
 exec $bg_set
 
-exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec_always --no-startup-id /usr/lib/xdg-desktop-portal -r & 
-exec_always --no-startup-id /usr/lib/xdg-desktop-portal-wlr &
+exec_always --no-startup-id pipewire &
+exec_always --no-startup-id xdg-desktop-portal &
+exec_always --no-startup-id xdg-desktop-portal-wlr &
+exec_always --no-startup-id xdg-desktop-portal-gtk &
 
 gaps outer 3
 gaps inner 6

@@ -28,3 +28,4 @@ keybind = ctrl+a>k=goto_split:top
 keybind = ctrl+a>l=goto_split:right
 
 initial-command = fastfetch; exec zsh
+command = exec zsh
