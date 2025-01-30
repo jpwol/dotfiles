@@ -20,7 +20,7 @@
     "clock",
   ],
   "modules-right": [
-    // "pulseaudio",
+    "pulseaudio",
     "custom/separator",
     "network",
     "custom/separator",
