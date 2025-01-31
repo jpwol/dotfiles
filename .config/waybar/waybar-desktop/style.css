@@ -3,11 +3,14 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  /* font-size: 13px; */
 }
 
 window#waybar {
-  background-color: @bg;
+  background-color: transparent;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  min-height: 0px;
   border-radius: 20px;
 }
 
@@ -17,31 +20,38 @@ window#waybar {
 
 #workspaces {
   background-color: @bg;
-  margin: 5px 0 5px 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border: 2px solid @fg;
   border-radius: 20px;
   min-height: 0px;
 }
+
 #workspaces button {
-  background-color: #859289;
+  background-color: @bg;
   border-radius: 20px;
-  margin: 0 2px 0 2px;
-  padding: 0;
+  border: 2px solid @fg;
+  margin: 5px 5px 5px 5px;
+  padding: 0 0 0 0;
   color: #ffffff;
-  min-height: 0px;
-  min-width: 20px;
+  min-height: 10px;
+  min-width: 13px;
 }
 
 #workspaces button:hover {
-  background: #d3c6aa;
+  background: @purple;
+  border: 2px solid @purple;
 }
 
 #workspaces button.focused {
-  background-color: #9da9a0;
-  min-width: 50px;
+  background: @fg;
+  border: 2px solid @fg;
+  min-width: 25px;
+  /* min-height: 17px; */
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  border: 2px solid @red;
 }
 
 #mode {
@@ -64,7 +74,7 @@ window#waybar {
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -75,8 +85,11 @@ window#waybar {
 #clock {
   background-color: @bg;
   color: @font;
+  border: 2px solid @fg;
+  border-radius: 20px;
+  margin: 0 0 0 0;
+  padding: 0 8px 0 8px;
   font-weight: bold;
-  margin: 5px 0 7px 0;
 }
 
 @keyframes blink {
@@ -93,12 +106,16 @@ label:focus {
 #pulseaudio {
   background-color: @bg;
   color: @font;
+  border: 2px solid @fg;
+  border-radius: 20px;
+  margin: 0 5px 0 0;
+  padding: 0 8px 0 8px;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 #pulseaudio.muted {
-  color: @blue;
+  background: @blue;
+  color: @bg;
 }
 
 #pulseaudio:hover {
@@ -108,9 +125,11 @@ label:focus {
 #network {
   background-color: @bg;
   color: @font;
-  padding: 0 10px 0 0;
+  border: 2px solid @fg;
+  border-radius: 20px;
+  margin: 0 5px 0 5px;
+  padding: 0 7px 0 8px;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 #network.disconnected {
@@ -124,53 +143,57 @@ label:focus {
 #memory {
   background-color: @bg;
   color: @font;
-  padding: 0 5px 0 0;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-#cpu {
-  color: @font;
-  font-weight: bold;
+  border-top: 2px solid @fg;
+  border-left: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  border-radius: 20px 0px 0px 20px;
+  margin: 0 0 0 5px;
   padding: 0 5px 0 5px;
-  margin-top: 5px;
+  font-weight: bold;
 }
 
 #disk {
+  background-color: @bg;
   color: @font;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
   font-weight: bold;
+  margin: 0 0 0 0;
   padding: 0 5px 0 5px;
-  margin-top: 5px;
+}
+
+#cpu {
+  background-color: @bg;
+  color: @font;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  font-weight: bold;
+  margin: 0 0 0 0;
+  padding: 0 5px 0 5px;
 }
 
 #temperature {
   background-color: @bg;
   color: @font;
-  padding: 0 0 0 5px;
+  border-top: 2px solid @fg;
+  border-right: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  border-radius: 0px 20px 20px 0px;
+  margin: 0 5px 0 0;
+  padding: 0 8px 0 5px;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 #temperature.critical {
   background-color: #eb4d4b;
 }
 
-#custom-media {
-  background-color: #66cc99;
-  color: #2a5c45;
-  min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-  background-color: #66cc99;
-}
-
 #tray {
   background-color: @bg;
+  border: 2px solid @fg;
   border-radius: 20px;
-  margin-right: 10px;
-  margin-top: 5px;
-  padding: 0 5px 0 0;
+  margin: 0 5px 0 5px;
+  padding: 0 7px 0 7px;
 }
 
 #tray > .passive {

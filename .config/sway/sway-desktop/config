@@ -7,47 +7,25 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term ghostty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi --show drun 
 
-set $bg_set /home/josh/.config/sway/scripts/bg_set
+set $term ghostty
+set $menu wofi --show drun 
 
 output DP-1 res 2560x1440 pos 0 0 
 output DP-2 res 1920x1080 pos -1920 300
 
 ### Appearance
-# window corner radius in px
 corner_radius 10
 
 set $opacity 0.9
-
 for_window [class=".*"] opacity $opacity
 for_window [app_id=".*"] opacity $opacity
-
-client.focused            #1f2335 #1f2335 #fbf1c7 #1f2335 #1f2335
-client.focused_inactive   #1f2335 #8ec07c #fbf1c7 #1f2335 #292e42
-client.unfocused          #1f2335 #8ec07c #fbf1c7 #1f2335 #1f2335
-client.urgent             #fb4943 #282828 #fbf1c7 #282828 #fb4943
-client.placeholder        #1d2021 #282828 #fbf1c7 #282828 #1f2335
-
-exec $bg_set
-
-exec_always --no-startup-id pipewire &
-exec_always --no-startup-id wireplumber &
-
-exec_always --no-startup-id xdg-desktop-portal &
-exec_always --no-startup-id xdg-desktop-portal-wlr &
-exec_always --no-startup-id xdg-desktop-portal-gtk &
 
 gaps outer 3
 gaps inner 6
@@ -55,11 +33,29 @@ gaps inner 6
 default_border pixel 2
 default_floating_border pixel 2
 
-# Window background blur
+## Border Colors
+client.focused            #1f2335 #1f2335 #fbf1c7 #1f2335 #1f2335
+client.focused_inactive   #1f2335 #8ec07c #fbf1c7 #1f2335 #292e42
+client.unfocused          #1f2335 #8ec07c #fbf1c7 #1f2335 #1f2335
+client.urgent             #fb4943 #282828 #fbf1c7 #282828 #fb4943
+client.placeholder        #1d2021 #282828 #fbf1c7 #282828 #1f2335
+
+### Startup Apps
+exec_always --no-startup-id xdg-desktop-portal &
+exec_always --no-startup-id xdg-desktop-portal-wlr &
+exec_always --no-startup-id xdg-desktop-portal-gtk &
+
+exec --no-startup-id swww-daemon
+exec_always --no-startup-id pipewire &
+exec_always --no-startup-id wireplumber &
+
+exec swww img /home/josh/Pictures/Wallpapers/Orange_Moon.jpg
+
+# Blur and Shadows
 blur on
 blur_xray on
-blur_passes 2
-blur_radius 5
+blur_passes 4
+blur_radius 2
 
 shadows enable
 shadows_on_csd enable
@@ -75,13 +71,7 @@ dim_inactive_colors.urgent #900000FF
 scratchpad_minimize disable
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-exec swaybg -o "*" -i /home/josh/Pictures/Wallpapers/streetlights_1.png
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
 ### Idle configuration
-#
 # Example configuration:
 #
 # exec swayidle -w \
@@ -96,30 +86,28 @@ exec swaybg -o "*" -i /home/josh/Pictures/Wallpapers/streetlights_1.png
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+# Input
 input "type:keyboard" {
   xkb_options "ctrl:nocaps"
   xkb_numlock enabled
 }
 ### Key bindings
-#
-# Basics:
-#
-    # Restart Waybar
-    set $restartBar /home/josh/.config/waybar/launch_waybar.fish
-    bindsym $mod+Shift+r exec $restartBar
+  # Restart Waybar
+  set $restartBar /home/josh/.config/waybar/scripts/launch_waybar
+  bindsym $mod+Shift+r exec $restartBar
 
-    # Screenshot
-    set $screenshot /home/josh/.config/sway/scripts/screenshot
-    bindsym $mod+Tab exec $screenshot
+  # Screenshot
+  set $screenshot /home/josh/.config/sway/scripts/screenshot
+  bindsym $mod+Tab exec $screenshot
 
-    # Start a terminal
-    bindsym $mod+Return exec $term
+  # Start a terminal
+  bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+q kill
+  # Kill focused window
+  bindsym $mod+Shift+q kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
+  # Start your launcher
+  bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

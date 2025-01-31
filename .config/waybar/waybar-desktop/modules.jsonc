@@ -84,7 +84,7 @@
     "format": "{icon} {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰝟 {volume}%",
+    "format-muted": "󰝟  {volume}%",
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
@@ -94,7 +94,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": ["󰕿 ", "󰖀 ", "󰕾 "],
     },
     "on-click": "pavucontrol",
   },
