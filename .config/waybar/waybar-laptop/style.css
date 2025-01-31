@@ -171,6 +171,7 @@ label:focus {
   border-radius: 20px;
   padding: 0 7px 0 10px;
   font-weight: bold;
+  margin: 0 3px 0 0;
 }
 
 #custom-media {
