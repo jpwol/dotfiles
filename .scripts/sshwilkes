@@ -5,16 +5,20 @@ HNAME="groot.mathcs.wilkes.edu"
 PASS="Heavychevy11"
 
 if command -v openfortivpn &>/dev/null; then
-  echo "Waiting for VPN to connect..."
-  sudo openfortivpn -c /etc/openfortivpn/config &>/dev/null &
-  sleep 1
-  while ! $(ip link show ppp0 &>/dev/null); do
-    sleep 2
-  done
-  
-  echo "VPN is connected. Proceeding with SSH..."
+  if pgrep -x "openfortivpn"; then
+    echo "VPN is running!"
+  else
+    echo "Waiting for VPN to connect..."
+    sudo openfortivpn -c /etc/openfortivpn/config &>/dev/null &
+    sleep 1
+    while ! $(ip link show ppp0 &>/dev/null); do
+      sleep 2
+    done
 
-  sshpass -p ${PASS} ssh -l ${UNAME} ${HNAME} -t 'export TERM=xterm; exec $SHELL'
+    echo "VPN is connected. Proceeding with SSH..."
+
+    sshpass -p ${PASS} ssh -l ${UNAME} ${HNAME} -t 'export TERM=xterm; exec $SHELL'
+  fi
 fi
 
 sudo pkill openfortivpn
