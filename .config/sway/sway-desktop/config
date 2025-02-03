@@ -41,13 +41,14 @@ client.urgent             #fb4943 #282828 #fbf1c7 #282828 #fb4943
 client.placeholder        #1d2021 #282828 #fbf1c7 #282828 #1f2335
 
 ### Startup Apps
-exec_always --no-startup-id xdg-desktop-portal &
-exec_always --no-startup-id xdg-desktop-portal-wlr &
-exec_always --no-startup-id xdg-desktop-portal-gtk &
+exec_always --no-startup-id /usr/libexec/xdg-desktop-portal &
+exec_always --no-startup-id /usr/libexec/xdg-desktop-portal-wlr &
+exec_always --no-startup-id /usr/libexec/xdg-desktop-portal-gtk &
 
 exec --no-startup-id swww-daemon
 exec_always --no-startup-id pipewire &
 exec_always --no-startup-id wireplumber &
+exec --no-startup-id nm-applet
 
 exec swww img /home/josh/Pictures/Wallpapers/Orange_Moon.jpg
 

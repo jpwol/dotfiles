@@ -34,6 +34,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias code='code-oss'
 
 # Shell Integrations
 eval "$(fzf --zsh)"
@@ -60,6 +61,11 @@ if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
   )  
 fi
 source ${zsh_plugins}.zsh
+
+# Activate pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 # Load completions. IDK why this has to be last but it doesn't work otherwise
 autoload -U compinit && compinit

@@ -42,6 +42,7 @@ return {
 					"jdtls",
 					"marksman",
 					"taplo",
+					"vala_ls",
 				},
 			})
 
@@ -199,6 +200,14 @@ return {
 							basedpyright = {
 								analysis = {
 									diagnosticMode = "openFilesOnly",
+									diagnosticSeverityOverrides = {
+										reportUnusedImport = false,
+										reportMissingTypeStubs = false,
+										reportUnknownArgumentType = false,
+										reportUnknownMemberType = false,
+										reportUnknownVariableType = false,
+										reportUnusedCallResult = false,
+									},
 									inlayHints = {
 										callArgumentNames = true,
 									},
@@ -350,7 +359,7 @@ return {
 				function()
 					return vim.api.nvim_buf_get_name(0)
 				end,
-				"--disable=C0114,C0116",
+				"--disable=C0114,C0116,W0611,E0401",
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
