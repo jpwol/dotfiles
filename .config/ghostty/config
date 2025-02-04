@@ -6,13 +6,16 @@ font-style = SemiBold
 font-style-bold = ExtraBold
 font-style-italic = SemiBold Italic
 
-window-theme = auto
+window-theme = ghostty
 window-colorspace = display-p3
 window-decoration = false
 
+gtk-titlebar = false
 gtk-tabs-location = hidden
-
+shell-integration = zsh
 shell-integration-features = no-cursor
+
+background-opacity = 0.8
 
 cursor-style = block
 cursor-style-blink = false

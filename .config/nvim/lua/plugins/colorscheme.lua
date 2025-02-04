@@ -41,11 +41,13 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
-		opts = function()
+		config = function()
 			require("tokyonight").setup({
 				style = "night",
 				styles = {
 					keywords = { italic = true },
+					sidebars = "transparent",
+					-- floats = "transparent",
 				},
 				on_highlights = function(hl, c)
 					hl.DiagnosticUnderlineWarn.undercurl = false

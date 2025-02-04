@@ -24,8 +24,8 @@ output DP-2 res 1920x1080 pos -1920 300
 corner_radius 10
 
 set $opacity 0.9
-for_window [class=".*"] opacity $opacity
-for_window [app_id=".*"] opacity $opacity
+# for_window [class=".*"] opacity $opacity
+for_window [app_id="Firefox"] opacity $opacity
 
 gaps outer 3
 gaps inner 6
