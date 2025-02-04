@@ -15,7 +15,7 @@ gtk-tabs-location = hidden
 shell-integration = zsh
 shell-integration-features = no-cursor
 
-background-opacity = 0.8
+background-opacity = 0.9
 
 cursor-style = block
 cursor-style-blink = false

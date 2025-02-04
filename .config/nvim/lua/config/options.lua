@@ -45,7 +45,3 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 	end,
 })
-
--- require("tokyonight").setup({
--- 	vim.cmd([[colorscheme tokyonight]]),
--- })
