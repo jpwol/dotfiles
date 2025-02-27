@@ -6,6 +6,10 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
+# export GTK_THEME="Tokyonight-Dark"
+export GTK_THEME="Everforest-Dark"
+export XCURSOR_THEME="BreezeX-RosePine-Linux"
+
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/bin/.scripts:$PATH
 
@@ -35,6 +39,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 alias code='code-oss'
+alias ff='clear && fastfetch'
+alias vi='nvim'
 
 # Shell Integrations
 eval "$(fzf --zsh)"

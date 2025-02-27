@@ -1,4 +1,6 @@
-theme = tokyonight_night
+#theme = tokyonight_night
+#theme = catppuccin-macchiato
+theme = Everforest Dark - Hard
 
 font-family = "JetBrainsMono Nerd Font"
 
@@ -15,7 +17,7 @@ gtk-tabs-location = hidden
 shell-integration = zsh
 shell-integration-features = no-cursor
 
-background-opacity = 0.9
+background-opacity = 0.8
 
 cursor-style = block
 cursor-style-blink = false

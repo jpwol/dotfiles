@@ -42,7 +42,7 @@ return {
 					"jdtls",
 					"marksman",
 					"taplo",
-					"vala_ls",
+					"glsl_analyzer",
 				},
 			})
 
@@ -56,7 +56,7 @@ return {
 					"debugpy", -- python debugger
 					"eslint_d", -- javascript linter (HATE)
 					"luacheck", -- lua linter
-					"cpplint", -- c, c++ linter
+					-- "cpplint", -- c, c++ linter
 					"codelldb", -- c, c++, rust, zig debugger
 					"cmakelang",
 					"cmakelint",
@@ -269,7 +269,21 @@ return {
 					lspconfig.jdtls.setup({
 						capabilities = capabilities,
 						filetypes = { "java" },
-						cmd = { "jdtls" },
+						cmd = {
+							"jdtls",
+							-- "--module-path",
+							-- "/home/josh/.local/lib/javafx-sdk-21.0.6/lib",
+							-- "--add-modules=ALL-SYSTEM",
+						},
+						settings = {
+							java = {
+								project = {
+									referencedLibraries = {
+										"/home/josh/.local/lib/javafx-sdk-21.0.6/lib/*.jar",
+									},
+								},
+							},
+						},
 					})
 				end,
 				["marksman"] = function()
@@ -298,6 +312,12 @@ return {
 						},
 					})
 				end,
+				["glsl_analyzer"] = function()
+					lspconfig.glsl_analyzer.setup({
+						capabilities = capabilities,
+						filetypes = { "glsl", "vs", "fs" },
+					})
+				end,
 			}
 			mason_lspconfig.setup_handlers(handlers)
 
@@ -316,8 +336,8 @@ return {
 				json = { "jsonlint" },
 				jsonc = { "jsonlint" },
 				python = { "pylint" },
-				c = { "cpplint" },
-				cpp = { "cpplint" },
+				-- c = { "cpplint" },
+				-- cpp = { "cpplint" },
 				cs = { "trivy" },
 				lua = { "luacheck" },
 				cmake = { "cmakelint" },
@@ -325,7 +345,7 @@ return {
 			}
 
 			local eslint = lint.linters.eslint_d
-			local cpplint = lint.linters.cpplint
+			-- local cpplint = lint.linters.cpplint
 			local luacheck = lint.linters.luacheck
 			local pylint = lint.linters.pylint
 
@@ -344,9 +364,9 @@ return {
 				end,
 			}
 
-			cpplint.args = {
-				"--filter=-legal/copyright",
-			}
+			-- cpplint.args = {
+			-- 	"--filter=-legal/copyright",
+			-- }
 
 			luacheck.args = {
 				"global = false",
