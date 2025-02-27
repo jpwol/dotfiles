@@ -4,3 +4,4 @@ lazy-lock.json
 .home/.tmux/plugins/*
 .config/zsh/zhistory
 .config/zsh/.zcompdump
+.scripts/sshwilkes
