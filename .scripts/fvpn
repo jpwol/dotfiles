@@ -1,3 +1,0 @@
-#!/usr/bin/zsh
-
-sudo openfortivpn -c /etc/openfortivpn/config

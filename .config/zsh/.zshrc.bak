@@ -38,9 +38,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias code='code-oss'
 alias ff='clear && fastfetch'
 alias vi='nvim'
-alias fvpn='sudo openfortivpn -c /etc/openfortivpn/config'
 
 # Shell Integrations
 eval "$(fzf --zsh)"
