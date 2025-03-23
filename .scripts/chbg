@@ -2,6 +2,17 @@
 
 directory="$HOME/Pictures/Wallpapers"
 
+mon=($(hyprctl monitors | grep Monitor | awk '{print($2)}'))
+
+if [[ $1 -eq 1 ]]; then
+  monitor=${mon[1]}
+elif [[ $1 -eq 2 ]]; then
+  monitor=${mon[2]}
+else
+  monitor="${mon[1]},${mon[2]}"
+fi
+  
+
 if [[ -d $directory ]]; then
   wallpapers=("$directory"/*)
 
@@ -15,7 +26,7 @@ if [[ -d $directory ]]; then
   read "answer?Enter the index: "
   if [[ $answer -le $index ]]; then
     (
-      swww img $wallpapers[$answer] --transition-fps 144 --transition-type wipe >/dev/null 2>&1 &
+      swww img -o $monitor $wallpapers[$answer] --transition-fps 144 --transition-type wipe >/dev/null 2>&1 &
     )
   else
     echo "outta bounds"
