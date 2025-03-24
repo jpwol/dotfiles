@@ -31,7 +31,7 @@ return {
 					hl.DiagnosticUnderlineInfo.underline = true
 				end,
 			})
-			vim.cmd([[colorscheme everforest]])
+			-- vim.cmd([[colorscheme everforest]])
 		end,
 	},
 	{
@@ -60,7 +60,7 @@ return {
 		lazy = false,
 		config = function()
 			require("tokyonight").setup({
-				style = "night",
+				style = "moon",
 				styles = {
 					keywords = { italic = true },
 					sidebars = "transparent",
@@ -77,7 +77,7 @@ return {
 					hl.DiagnosticUnderlineInfo.underline = true
 				end,
 			})
-			-- vim.cmd([[colorscheme tokyonight]])
+			vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 	{
