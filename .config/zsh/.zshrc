@@ -11,7 +11,7 @@ export GTK_THEME="Tokyonight-Dark"
 export XCURSOR_THEME="BreezeX-RosePine-Linux"
 
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin/.scripts:$PATH
+export PATH=$HOME/.local/bin/scripts:$PATH
 
 # Set the history file and settings
 export HISTFILE=${ZDOTDIR}/zhistory
