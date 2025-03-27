@@ -1,7 +1,11 @@
-local is_transparent = true
+local is_transparent = false
 local bg_color = "#222435"
+local linenr = "#545c7e"
 
 local function color_background()
+	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = linenr })
+	vim.api.nvim_set_hl(0, "LineNrBelow", { fg = linenr })
+
 	if is_transparent then
 		vim.api.nvim_set_hl(0, "Normal", { bg = bg_color })
 		vim.api.nvim_set_hl(0, "NormalNC", { bg = bg_color })
