@@ -5,6 +5,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
+
 		config = function() -- import mason
 			local mason = require("mason")
 
@@ -75,6 +76,13 @@ return {
 			{ "folke/lazydev.nvim", opts = {} },
 		},
 		config = function()
+			vim.diagnostic.config({
+				underline = true,
+				virtual_text = {
+					current_line = true,
+				},
+			})
+
 			-- import lspconfig plugin
 			local lspconfig = require("lspconfig")
 

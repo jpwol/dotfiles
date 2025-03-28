@@ -28,6 +28,8 @@ opt.splitbelow = true
 
 opt.iskeyword:append("-")
 
+opt.showmode = false
+
 vim.filetype.add({
 	extension = {
 		vs = "glsl",
