@@ -78,7 +78,7 @@ return {
 		config = function()
 			vim.diagnostic.config({
 				underline = true,
-				virtual_text = {
+				virtual_lines = {
 					current_line = true,
 				},
 			})
