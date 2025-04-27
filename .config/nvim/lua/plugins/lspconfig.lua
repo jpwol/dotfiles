@@ -255,7 +255,7 @@ return {
 					lspconfig.gopls.setup({
 						capabilities = capabilities,
 						cmd = { "gopls" },
-						filetypes = { "go" },
+						filetypes = { "go", "mod" },
 					})
 				end,
 				["jsonls"] = function()

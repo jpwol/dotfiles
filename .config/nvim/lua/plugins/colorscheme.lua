@@ -92,4 +92,7 @@ return {
 		name = "catppuccin",
 		lazy = false,
 	},
+	{
+		"rmehri01/onenord.nvim",
+	},
 }
