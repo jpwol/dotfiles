@@ -27,8 +27,12 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # start wayland session manager on login
 if uwsm check may-start; then
+=======
+if uwsm check may-start && uwsm select; then
+>>>>>>> Stashed changes
 =======
 if uwsm check may-start && uwsm select; then
 >>>>>>> Stashed changes
