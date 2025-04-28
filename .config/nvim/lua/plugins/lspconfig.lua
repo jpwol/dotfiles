@@ -44,6 +44,7 @@ return {
 					"marksman",
 					"taplo",
 					"glsl_analyzer",
+					"rust_analyzer",
 				},
 			})
 
@@ -324,6 +325,18 @@ return {
 					lspconfig.glsl_analyzer.setup({
 						capabilities = capabilities,
 						filetypes = { "glsl", "vs", "fs" },
+					})
+				end,
+				["rust_analyzer"] = function()
+					lspconfig.rust_analyzer.setup({
+						capabilities = capabilities,
+						settings = {
+							rust_analyzer = {
+								cargo = {
+									allFeatures = true,
+								},
+							},
+						},
 					})
 				end,
 			}
