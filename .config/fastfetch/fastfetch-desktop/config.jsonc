@@ -19,7 +19,7 @@
       "type": "string",
     },
     "bar": {
-      "width": 8,
+      "width": 10,
       "borderLeft": "",
       "borderRight": "",
     },
@@ -72,7 +72,7 @@
     {
       "type": "memory",
       "key": "┃ {#94}MEM",
-      "format": "{4} {3}    {#95}┃",
+      "format": "{4} {3}  {#95}┃",
       "percent": {
         "type": 3,
         "green": 30,
@@ -84,7 +84,7 @@
       "type": "disk",
       "key": "┃ {#96}DSK",
       "folders": "/home",
-      "format": "{13} {3}    {#95}┃",
+      "format": "{13} {3}  {#95}┃",
       "percent": {
         "type": 7,
         "green": 30,
