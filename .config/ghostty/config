@@ -2,7 +2,7 @@ theme = tokyonight_moon
 
 font-family = "JetBrainsMono Nerd Font"
 
-font-style = SemiBold
+font-style = Medium
 font-style-bold = ExtraBold
 font-style-italic = SemiBold Italic
 
@@ -31,6 +31,3 @@ keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>j=goto_split:bottom
 keybind = ctrl+a>k=goto_split:top
 keybind = ctrl+a>l=goto_split:right
-
-initial-command = fastfetch; exec zsh
-command = exec zsh
