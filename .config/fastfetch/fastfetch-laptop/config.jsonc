@@ -97,7 +97,7 @@
       "key": "┃ {#96}BAT",
       "format": "{10} {4}  {#95}┃",
       "percent": {
-        "type": 7,
+        "type": ["bar", "num", "num-color"],
         "green": 50,
         "yellow": 30,
       },
