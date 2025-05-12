@@ -1,8 +1,8 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 
@@ -27,7 +27,7 @@ return {
 
 			mason_lspconfig.setup({
 				-- list of servers for mason to install
-				automatic_installation = true,
+				automatic_enable = true,
 				ensure_installed = {
 					"html",
 					"cssls",
@@ -152,195 +152,166 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
 
-			local handlers = {
-				function(server_name)
-					lspconfig[server_name].setup({})
-				end,
+			vim.lsp.config("basedpyright", {
+				capabilities = capabilities,
+				filetypes = { "python" },
+				settings = {
+					basedpyright = {
+						analysis = {
+							diagnosticMode = "openFilesOnly",
+							diagnosticSeverityOverrides = {
+								reportUnusedImport = false,
+								reportMissingTypeStubs = false,
+								reportUnknownArgumentType = false,
+								reportUnknownMemberType = false,
+								reportUnknownVariableType = false,
+								reportUnusedCallResult = false,
+							},
+							inlayHints = {
+								callArgumentNames = true,
+							},
+						},
+					},
+				},
+			})
 
-				["lua_ls"] = function()
-					lspconfig.lua_ls.setup({
-						settings = {
-							Lua = {
-								runtime = {
-									version = "Lua 5.4",
-									path = {
-										"?.lua",
-										"?/init.lua",
-										"?/?.lua",
-										"/usr/share/lua/5.4/?.lua",
-										"/usr/share/lua/5.4/?/init.lua",
-										vim.fn.expand("~/.luarocks/lib/lua/5.4/"),
-									},
-								},
-								workspace = {
-									library = {
-										"?.lua",
-										"/home/josh/.luarocks/share/lua/5.4",
-										"/home/josh/.luarocks/lib/lua/5.4",
-										vim.fn.expand("$VIMRUNTIME/lua"),
-										vim.api.nvim_get_runtime_file("", true),
-									},
-									checkThirdParty = false,
-								},
-								diagnostics = {
-									globals = { "vim" },
-								},
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						runtime = {
+							version = "Lua 5.4",
+							path = {
+								"?.lua",
+								"?/init.lua",
+								"?/?.lua",
+								"/usr/share/lua/5.4/?.lua",
+								"/usr/share/lua/5.4/?/init.lua",
+								vim.fn.expand("~/.luarocks/lib/lua/5.4/"),
 							},
 						},
-					})
-				end,
-				["clangd"] = function()
-					lspconfig.clangd.setup({
-						cmd = { "clangd", "--fallback-style=Google" },
-						capabilities = capabilities,
-						filetypes = { "c", "cpp" },
-						settings = {
-							clangd = {
-								fallbackFlags = {},
+						workspace = {
+							library = {
+								"?.lua",
+								"/home/josh/.luarocks/share/lua/5.4",
+								"/home/josh/.luarocks/lib/lua/5.4",
+								vim.fn.expand("$VIMRUNTIME/lua"),
+								vim.api.nvim_get_runtime_file("", true),
+							},
+							checkThirdParty = false,
+						},
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+			vim.lsp.config("clangd", {
+				cmd = { "clangd", "--fallback-style=Google" },
+				capabilities = capabilities,
+				filetypes = { "c", "cpp" },
+				settings = {
+					clangd = {
+						fallbackFlags = {},
+					},
+				},
+			})
+			-- vim.lsp.config("zls", {
+			-- 	capabilities = capabilities,
+			-- 	cmd = { "zls" },
+			-- 	filetypes = { "zig", "zir" },
+			-- 	root_dir = lspconfig.util.root_pattern("zls.json", "build.zig", ".git"),
+			-- 	settings = {
+			-- 		zls = {
+			-- 			Zls = {
+			-- 				enableAutofix = true,
+			-- 				enable_snippets = true,
+			-- 				enable_ast_check_diagnostics = true,
+			-- 				enable_autofix = true,
+			-- 				enable_import_embedfile_argument_completions = true,
+			-- 				warn_style = true,
+			-- 				enable_semantic_tokens = true,
+			-- 				enable_inlay_hints = true,
+			-- 				inlay_hints_hide_redundant_param_names = true,
+			-- 				inlay_hints_hide_redundant_param_names_last_token = true,
+			-- 				operator_completions = true,
+			-- 				include_at_in_builtins = true,
+			-- 				max_detail_length = 1048576,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
+			vim.lsp.config("zls", {
+				capabilities = capabilities,
+				cmd = { "zls" },
+				filetypes = { "zig", "zir" },
+				root_markers = { "build.zig" },
+			})
+			vim.lsp.config("gopls", {
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "mod" },
+			})
+			vim.lsp.config("jsonls", {
+				capabilities = capabilities,
+				filetypes = { "json", "jsonc" },
+				settings = {
+					json = {
+						validate = { enable = true },
+						format = { enable = true },
+						schemas = {},
+						allowComments = true,
+						trailingCommas = "ignore",
+					},
+				},
+			})
+			vim.lsp.config("jdtls", {
+				capabilities = capabilities,
+				filetypes = { "java" },
+				cmd = { "jdtls" },
+				settings = {
+					java = {
+						project = {
+							referencedLibraries = {
+								"/home/josh/.local/lib/javafx-sdk-21.0.6/lib/*.jar",
 							},
 						},
-					})
-				end,
-				["basedpyright"] = function()
-					lspconfig.basedpyright.setup({
-						capabilities = capabilities,
-						filetypes = { "python" },
-						settings = {
-							basedpyright = {
-								analysis = {
-									diagnosticMode = "openFilesOnly",
-									diagnosticSeverityOverrides = {
-										reportUnusedImport = false,
-										reportMissingTypeStubs = false,
-										reportUnknownArgumentType = false,
-										reportUnknownMemberType = false,
-										reportUnknownVariableType = false,
-										reportUnusedCallResult = false,
-									},
-									inlayHints = {
-										callArgumentNames = true,
-									},
-								},
-							},
+					},
+				},
+			})
+			vim.lsp.config("marksman", {
+				capabilities = capabilities,
+				filetypes = { "markdown" },
+				cmd = { "marksman" },
+			})
+			vim.lsp.config("taplo", {
+				capabilities = capabilities,
+				filetypes = { "toml" },
+			})
+			vim.lsp.config("bashls", {
+				capabilities = capabilities,
+				filetypes = { "bash", "zsh", "sh" },
+				cmd = { "bash-language-server", "start" },
+				settings = {
+					bashIde = {
+						logLevel = "error",
+						enableSourceErrorDiagnostics = false,
+					},
+				},
+			})
+			vim.lsp.config("glsl_analyzer", {
+				capabilities = capabilities,
+				filetypes = { "glsl", "vs", "fs" },
+			})
+			vim.lsp.config("rust_analyzer", {
+				capabilities = capabilities,
+				settings = {
+					rust_analyzer = {
+						cargo = {
+							allFeatures = true,
 						},
-					})
-				end,
-				["zls"] = function()
-					lspconfig.zls.setup({
-						capabilities = capabilities,
-						cmd = { "zls" },
-						filetypes = { "zig", "zir" },
-						root_dir = lspconfig.util.root_pattern("zls.json", "build.zig", ".git"),
-						settings = {
-							zls = {
-								Zls = {
-									enableAutofix = true,
-									enable_snippets = true,
-									enable_ast_check_diagnostics = true,
-									enable_autofix = true,
-									enable_import_embedfile_argument_completions = true,
-									warn_style = true,
-									enable_semantic_tokens = true,
-									enable_inlay_hints = true,
-									inlay_hints_hide_redundant_param_names = true,
-									inlay_hints_hide_redundant_param_names_last_token = true,
-									operator_completions = true,
-									include_at_in_builtins = true,
-									max_detail_length = 1048576,
-								},
-							},
-						},
-					})
-				end,
-				["gopls"] = function()
-					lspconfig.gopls.setup({
-						capabilities = capabilities,
-						cmd = { "gopls" },
-						filetypes = { "go", "mod" },
-					})
-				end,
-				["jsonls"] = function()
-					lspconfig.jsonls.setup({
-						capabilities = capabilities,
-						filetypes = { "json", "jsonc" },
-						settings = {
-							json = {
-								validate = { enable = true },
-								format = { enable = true },
-								schemas = {},
-								allowComments = true,
-								trailingCommas = "ignore",
-							},
-						},
-					})
-				end,
-				["jdtls"] = function()
-					lspconfig.jdtls.setup({
-						capabilities = capabilities,
-						filetypes = { "java" },
-						cmd = {
-							"jdtls",
-							-- "--module-path",
-							-- "/home/josh/.local/lib/javafx-sdk-21.0.6/lib",
-							-- "--add-modules=ALL-SYSTEM",
-						},
-						settings = {
-							java = {
-								project = {
-									referencedLibraries = {
-										"/home/josh/.local/lib/javafx-sdk-21.0.6/lib/*.jar",
-									},
-								},
-							},
-						},
-					})
-				end,
-				["marksman"] = function()
-					lspconfig.marksman.setup({
-						capabilities = capabilities,
-						filetypes = { "markdown" },
-						cmd = { "marksman" },
-					})
-				end,
-				["taplo"] = function()
-					lspconfig.taplo.setup({
-						capabilities = capabilities,
-						filetypes = { "toml" },
-					})
-				end,
-				["bashls"] = function()
-					lspconfig.bashls.setup({
-						capabilities = capabilities,
-						filetypes = { "bash", "zsh", "sh" },
-						cmd = { "bash-language-server", "start" },
-						settings = {
-							bashIde = {
-								logLevel = "error",
-								enableSourceErrorDiagnostics = false,
-							},
-						},
-					})
-				end,
-				["glsl_analyzer"] = function()
-					lspconfig.glsl_analyzer.setup({
-						capabilities = capabilities,
-						filetypes = { "glsl", "vs", "fs" },
-					})
-				end,
-				["rust_analyzer"] = function()
-					lspconfig.rust_analyzer.setup({
-						capabilities = capabilities,
-						settings = {
-							rust_analyzer = {
-								cargo = {
-									allFeatures = true,
-								},
-							},
-						},
-					})
-				end,
-			}
-			mason_lspconfig.setup_handlers(handlers)
+					},
+				},
+			})
 
 			require("lazydev").setup()
 		end,
