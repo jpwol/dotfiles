@@ -65,7 +65,7 @@
     {
       "type": "packages",
       "key": "┃ {#96}PKG",
-      "format": "{2}             {#95}┃",
+      "format": "{2} (pacman)    {#95}┃",
       "keyColor": "95",
     },
     {
