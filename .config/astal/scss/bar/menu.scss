@@ -1,0 +1,15 @@
+.menu-box {
+  background-color: #161616;
+  border-radius: to-rem(20px);
+
+  .menu-button {
+    padding: 0 to-rem(5px);
+    font-size: to-rem(20px);
+  }
+}
+
+.menu-toggle {
+  padding: 0 to-rem(0px) 0 to-rem(5px);
+  margin: 0;
+  font-size: to-rem(30px);
+}

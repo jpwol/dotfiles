@@ -5,43 +5,56 @@ local Anchor = require("astal.gtk3").Astal.WindowAnchor
 local map = require("lua.lib").map
 
 return function()
-	local revealed = Variable(false)
+	local menu_revealed = Variable(false)
+
 	local wifi = Network.get_default().wifi
 	local speaker = Wp.get_default().audio
 
-	local connections = {}
+	local connections = wifi.get_access_points(wifi)
 
 	local menu = Widget.Window({
 		name = "menu",
 		class_name = "menu-box",
 		anchor = Anchor.TOP + Anchor.RIGHT,
-		visible = revealed(),
-		child = Widget.Box({
-			children = map(connections, function(cn)
-				print(cn.ssid)
-				return Widget.Button({
-					label = cn.ssid,
-				})
-			end),
+		visible = menu_revealed(),
+		Widget.Box({
+			vertical = true,
+			valign = "START",
+			Widget.Button({
+				class_name = "menu-button",
+				label = wifi.ssid,
+				on_click = function()
+					os.execute("notify-send 'clicked'")
+				end,
+			}),
 		}),
 	})
 
 	local toggle_button = Widget.Button({
-		Widget.Icon({
-			icon = "circle-symbolic",
-			class_name = "symbolic",
-			valign = "CENTER",
-		}),
+		class_name = "menu-button",
+		halign = "CENTER",
+		valign = "CENTER",
+		hexpand = true,
 		on_click = function()
 			connections = wifi.get_access_points(wifi)
-			revealed:set(not revealed:get())
+			menu_revealed:set(not menu_revealed:get())
 			wifi.scan(wifi)
-			for _, i in ipairs(connections) do
-				if i.ssid ~= nil then
-					print(i.ssid)
-				end
-			end
+			-- for _, i in ipairs(connections) do
+			-- 	if i.ssid ~= nil then
+			-- 		print(i.ssid)
+			-- 	end
+			-- end
+			map(connections, function(cn)
+				print(cn.ssid)
+			end)
 		end,
+		Widget.Icon({
+			icon = "circle-symbolic",
+			class_name = "menu-toggle",
+			valign = "CENTER",
+			halign = "CENTER",
+			hexpand = true,
+		}),
 	})
 
 	return {

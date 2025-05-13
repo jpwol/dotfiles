@@ -8,6 +8,8 @@ GdkPixbuf = astal.require("GdkPixbuf", "2.0")
 
 Astal = astal.Astal
 Widget = require("astal.gtk3.widget")
+Widget.GtkMenu = Widget.astalify(Gtk.Menu)
+Widget.GtkMenuItem = Widget.astalify(Gtk.MenuItem)
 bind = astal.bind
 
 Variable = astal.Variable

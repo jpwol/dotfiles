@@ -17,10 +17,10 @@ return function(monitor)
 			class_name = "bar-centerbox",
 			Widget.Box({
 				halign = "START",
+				Workspaces(),
 			}),
 			Widget.Box({
 				spacing = 5,
-				Workspaces(),
 				Clock(),
 				Indicators(),
 			}),

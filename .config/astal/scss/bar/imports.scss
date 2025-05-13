@@ -1,4 +1,5 @@
 @import './workspace.scss';
+@import './menu.scss';
 
 .bar {
   background-color: #161616;
@@ -6,6 +7,10 @@
   .symbolic {
     color: #ffffff;
     font-size: to-rem(30px);
+  }
+
+  .icon {
+    color: #ffffff;
   }
 
   .bar-centerbox {

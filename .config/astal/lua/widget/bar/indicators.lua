@@ -72,6 +72,22 @@ local VolumeIcon = function()
 	})
 end
 
+local Notifications = function()
+	return Widget.EventBox({
+		Widget.Box({
+			Widget.Button({
+				on_click_release = function()
+					os.execute("swaync-client -t")
+				end,
+				Widget.Icon({
+					class_name = "icon",
+					icon = "notif-symbolic",
+				}),
+			}),
+		}),
+	})
+end
+
 -- local BatteryIcon = function()
 -- 	local bat = Battery.get_default()
 --
@@ -96,6 +112,7 @@ return function()
 			spacing = 10,
 			WifiIcon(),
 			VolumeIcon(),
+			Notifications(),
 			-- BatteryIcon(),
 		}),
 	})
