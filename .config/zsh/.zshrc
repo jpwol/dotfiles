@@ -7,7 +7,6 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
 export GTK_THEME="Tokyonight-Dark"
-# export GTK_THEME="Everforest-Dark"
 export XCURSOR_THEME="BreezeX-RosePine-Linux"
 
 export PATH=$HOME/.local/bin:$PATH
