@@ -1,0 +1,20 @@
+#!/usr/bin/zsh
+
+bar_dir="$XDG_CONFIG_HOME/astal/"
+bar_exec_name="ags_bar"
+
+if [[ ! -d $bar_dir ]]; then
+  notify-send "ERROR" "bar directory not found" 
+  exit 1
+fi
+
+cd $bar_dir
+
+# export GTK_DEBUG=interactive
+
+if ! pgrep -f $bar_exec_name; then
+  exec -a $bar_exec_name lua5.3 "init.lua" > /dev/null 2>&1 &
+else
+  pkill -f $bar_exec_name
+  exec -a $bar_exec_name lua5.3 "init.lua" > /dev/null 2>&1 &
+fi

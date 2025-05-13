@@ -1,0 +1,61 @@
+@import './workspace.scss';
+
+.bar {
+  background-color: #161616;
+
+  .symbolic {
+    color: #ffffff;
+    font-size: to-rem(30px);
+  }
+
+  .bar-centerbox {
+    min-height: to-rem(45px);
+    padding-left: to-rem(20px);
+    padding-right: to-rem(20px);
+  }
+
+  .bar-box {
+    background-color: #262626;
+    min-width: to-rem(80px);
+    min-height: to-rem(35px);
+    border-radius: to-rem(20px);
+
+    &.clock-box {
+      padding: 0 to-rem(15px);
+    }
+
+    .indicator-cter {
+      padding: 0 to-rem(15px);
+    }
+  }
+
+  .bar-label {
+    font-weight: 600;
+
+    &.title {
+      font-weight: 500;
+      font-size: to-rem(15px);
+    }
+
+    &.subtitle {
+      font-size: to-rem(12px);
+      color: #ffffff;
+    }
+  }
+
+  .volume-slider {
+    min-width: to-rem(100px);
+    margin-left: to-rem(10px);
+
+    trough {
+      background-color: #525252;
+      border-radius: 10px;
+    }
+
+    highlight {
+      background-color: #78a9ff;
+      min-height: to-rem(12px);
+      border-radius: to-rem(20px);
+    }
+  }
+}
