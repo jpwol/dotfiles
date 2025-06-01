@@ -10,6 +10,7 @@ Astal = astal.Astal
 Widget = require("astal.gtk3.widget")
 Widget.GtkMenu = Widget.astalify(Gtk.Menu)
 Widget.GtkMenuItem = Widget.astalify(Gtk.MenuItem)
+Widget.GtkRevealer = Widget.astalify(Gtk.Revealer)
 bind = astal.bind
 
 Variable = astal.Variable

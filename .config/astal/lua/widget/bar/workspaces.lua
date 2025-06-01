@@ -3,7 +3,7 @@ local map = require("lua.lib").map
 
 local wp_count = 9
 local wp_button_size = 15
-local wp_button_thickness = 4.5
+local wp_button_thickness = 3.5
 local wp_button_size_css = rem(35)
 
 return function()

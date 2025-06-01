@@ -45,6 +45,7 @@ alias ls='ls --color'
 alias ff='clear && fastfetch'
 alias vi='nvim'
 alias fvpn='sudo openfortivpn -c /etc/openfortivpn/config'
+alias jup='jupyter notebook > /dev/null 2>&1 &'
 
 # Shell Integrations
 eval "$(fzf --zsh)"

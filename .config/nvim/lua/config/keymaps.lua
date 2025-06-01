@@ -40,3 +40,7 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Paste without losing current register
 keymap("x", "<leader>p", '"_dP')
+
+-- Increment number remap to work with multiplexer keybind
+keymap({ "n", "v" }, "<C-i>", "<C-a>", { desc = "Remap increment number" })
+keymap("v", "g<C-i>", "g<C-a>", { desc = "Remap increment vblock numbers" })

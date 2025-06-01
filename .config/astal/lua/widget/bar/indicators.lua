@@ -55,7 +55,7 @@ local VolumeIcon = function()
 					icon = bind(speaker, "volume-icon"),
 				}),
 			}),
-			Widget.Revealer({
+			Widget.GtkRevealer({
 				reveal_child = scroll_revealed(),
 				transition_type = "SLIDE_LEFT",
 				valign = "CENTER",
