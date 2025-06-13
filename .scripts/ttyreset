@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+  echo "Running in a pure TTY, proceeding..."
+  hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+  hyprctl --instance 0 'dispatch exec hyprlock'
+  echo "Done!"
+else
+  printf "\033[31;1mError:\033[0m This script must be run in a pure TTY, not inside a graphical session\n"
+  exit 1
+fi
+

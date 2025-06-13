@@ -45,6 +45,7 @@ return {
 					"taplo",
 					"glsl_analyzer",
 					"rust_analyzer",
+					"sqls",
 				},
 			})
 
@@ -151,6 +152,12 @@ return {
 				local hl = "DiagnosticSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 			end
+
+			vim.lsp.config("sqls", {
+				capabilities = capabilities,
+				filetypes = { "sql" },
+				cmd = { "sqls" },
+			})
 
 			vim.lsp.config("basedpyright", {
 				capabilities = capabilities,

@@ -38,6 +38,7 @@ return {
 				"tmux",
 				"zig",
 				"go",
+				"sql",
 			},
 			incremental_selection = {
 				enable = true,

@@ -15,7 +15,7 @@ return {
 				diagnostic_text_highlight = false,
 				diagnostic_line_highlight = false,
 				spell_foreground = false,
-				transparent_background_level = 2,
+				-- transparent_background_level = 2,
 				on_highlights = function(hl, palette)
 					hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.none }
 					hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.none }

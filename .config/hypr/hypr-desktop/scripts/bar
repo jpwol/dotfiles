@@ -16,5 +16,5 @@ if ! pgrep -f $bar_exec_name; then
   exec -a $bar_exec_name lua5.3 "init.lua" > /dev/null 2>&1 &
 else
   pkill -f $bar_exec_name
-  exec -a $bar_exec_name lua5.3 "init.lua" > /dev/null 2>&1 &
+  # exec -a $bar_exec_name lua5.3 "init.lua" > /dev/null 2>&1 &
 fi

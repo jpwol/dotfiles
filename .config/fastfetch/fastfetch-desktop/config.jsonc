@@ -71,7 +71,8 @@
     {
       "type": "memory",
       "key": "┃ {#94}MEM",
-      "format": "{4} {3}  {#95}┃",
+      // "format": "{4} {3}  {#95}┃",
+      "format": "{4} {3}  \u001b[G\u001b[48C{#95}┃",
       "percent": {
         "type": 3,
         "green": 30,
