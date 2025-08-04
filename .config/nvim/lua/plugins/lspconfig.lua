@@ -33,6 +33,7 @@ return {
 					"cssls",
 					"jsonls",
 					"lua_ls",
+					"eslint",
 					"basedpyright",
 					"clangd",
 					"zls",
@@ -46,6 +47,7 @@ return {
 					"glsl_analyzer",
 					"rust_analyzer",
 					"sqls",
+					"vue_ls",
 				},
 			})
 
@@ -57,7 +59,6 @@ return {
 					"black", -- python formatter
 					"pylint", -- python linter
 					"debugpy", -- python debugger
-					"eslint_d", -- javascript linter (HATE)
 					"luacheck", -- lua linter
 					-- "cpplint", -- c, c++ linter
 					"codelldb", -- c, c++, rust, zig debugger
@@ -181,7 +182,20 @@ return {
 					},
 				},
 			})
+			local base_on_attach = vim.lsp.config.eslint.on_attach
+			vim.lsp.config("eslint", {
+				on_attach = function(client, bufnr)
+					if not base_on_attach then
+						return
+					end
 
+					base_on_attach(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "LspEslintFixAll",
+					})
+				end,
+			})
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
@@ -222,31 +236,6 @@ return {
 					},
 				},
 			})
-			-- vim.lsp.config("zls", {
-			-- 	capabilities = capabilities,
-			-- 	cmd = { "zls" },
-			-- 	filetypes = { "zig", "zir" },
-			-- 	root_dir = lspconfig.util.root_pattern("zls.json", "build.zig", ".git"),
-			-- 	settings = {
-			-- 		zls = {
-			-- 			Zls = {
-			-- 				enableAutofix = true,
-			-- 				enable_snippets = true,
-			-- 				enable_ast_check_diagnostics = true,
-			-- 				enable_autofix = true,
-			-- 				enable_import_embedfile_argument_completions = true,
-			-- 				warn_style = true,
-			-- 				enable_semantic_tokens = true,
-			-- 				enable_inlay_hints = true,
-			-- 				inlay_hints_hide_redundant_param_names = true,
-			-- 				inlay_hints_hide_redundant_param_names_last_token = true,
-			-- 				operator_completions = true,
-			-- 				include_at_in_builtins = true,
-			-- 				max_detail_length = 1048576,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
 			vim.lsp.config("zls", {
 				capabilities = capabilities,
 				cmd = { "zls" },
@@ -320,6 +309,36 @@ return {
 				},
 			})
 
+			local vue_ls_path = "/usr/lib/node_modules/@vue/language-server"
+			local vue_plugin = {
+				name = "@vue/typescript-plugin",
+				location = vue_ls_path,
+				languages = { "vue" },
+				configNamespace = "typescript",
+			}
+			local vtsls_config = {
+				settings = {
+					vtsls = {
+						tsserver = {
+							globalPlugins = {
+								vue_plugin,
+							},
+						},
+					},
+				},
+				filetypes = {
+					"typescript",
+					"javascript",
+					"javascriptreact",
+					"typescriptreact",
+					"vue",
+				},
+			}
+			local vue_ls_config = {}
+			vim.lsp.config("vtsls", vtsls_config)
+			vim.lsp.config("vue_ls", vue_ls_config)
+			vim.lsp.enable({ "vtsls", "vue_ls" })
+
 			require("lazydev").setup()
 		end,
 	},
@@ -330,8 +349,8 @@ return {
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
-				javascript = { "eslint_d" },
-				typescript = { "eslint_d" },
+				-- javascript = { "eslint_d" },
+				-- typescript = { "eslint_d" },
 				json = { "jsonlint" },
 				jsonc = { "jsonlint" },
 				python = { "pylint" },
@@ -343,25 +362,25 @@ return {
 				bash = { "shellcheck" },
 			}
 
-			local eslint = lint.linters.eslint_d
+			-- local eslint = lint.linters.eslint_d
 			-- local cpplint = lint.linters.cpplint
 			local luacheck = lint.linters.luacheck
 			local pylint = lint.linters.pylint
 
-			eslint.args = {
-				"--no-warn-ignored",
-				"--format",
-				"json",
-				"ts",
-				"js",
-				"--stdin",
-				"--stdin-filename",
-				vim.fn.expand("%:p"),
-				"--debug",
-				function()
-					return vim.api.nvim_buf_get_name(0)
-				end,
-			}
+			-- eslint.args = {
+			-- 	"--no-warn-ignored",
+			-- 	"--format",
+			-- 	"json",
+			-- 	"ts",
+			-- 	"js",
+			-- 	"--stdin",
+			-- 	"--stdin-filename",
+			-- 	vim.fn.expand("%:p"),
+			-- 	"--debug",
+			-- 	function()
+			-- 		return vim.api.nvim_buf_get_name(0)
+			-- 	end,
+			-- }
 
 			-- cpplint.args = {
 			-- 	"--filter=-legal/copyright",

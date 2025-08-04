@@ -7,10 +7,10 @@ return {
 		-- Optional; default configuration will be used if setup isn't called.
 		config = function()
 			require("everforest").setup({
-				background = "soft",
+				background = "hard",
 				italics = true,
 				sign_column_background = "none",
-				ui_contrast = "low",
+				ui_contrast = "high",
 				dim_inactive_windows = false,
 				diagnostic_text_highlight = false,
 				diagnostic_line_highlight = false,

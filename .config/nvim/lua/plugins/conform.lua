@@ -14,7 +14,7 @@ return {
 				html = { "prettier" },
 				markdown = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "black" },
 				c = {},
 				cpp = {},
 				cs = {},
