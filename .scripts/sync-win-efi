@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+WIN_ESP_PART="/dev/nvme1n1p1"
+WIN_ESP_MOUNT="/mnt/win-efi"
+ARCH_ESP_MOUNT="/boot"
+
+sudo mkdir -p "$WIN_ESP_MOUNT"
+sudo mount "$WIN_ESP_PART" "$WIN_ESP_MOUNT"
+
+sudo mkdir -p "$ARCH_ESP_MOUNT/EFI/Microsoft"
+sudo cp -r "$WIN_ESP_MOUNT/EFI/Microsoft"* "$ARCH_ESP_MOUNT/EFI/Microsoft"
+
+sudo umount "$WIN_ESP_MOUNT"
+
+echo "Windows EFI files synced to Arch ESP"

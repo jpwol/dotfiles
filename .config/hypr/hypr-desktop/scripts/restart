@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+if zenity --question --title="Confirm Restart" --text="Do you really want to restart the system?"; then
+  shutdown -r now
+else
+  exit 0
+fi

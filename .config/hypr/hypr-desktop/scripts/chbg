@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+
+export GDK_BACKEND=x11
+
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+THUMB_DIR="$WALLPAPER_DIR/.thumbnails"
+
+entries=()
+for img in "$WALLPAPER_DIR"/*.{jpg,png}; do
+  [[ -f "$img" ]] || continue
+  thumb="$THUMB_DIR/$(basename "$img")"
+  entries+=("$thumb" "$img")
+done
+
+selected=$(yad --title="Choose Wallpaper" \
+  --window-icon=preferences-desktop-wallpaper \
+  --image-on-top --center --width=355 --height=600 \
+  --list \
+  --column="Wallpaper:IMG" \
+  --column="Path:HIDDEN" \
+  --hide-column=2 \
+  --no-markup --print-column=2 --separator='\n' \
+  "${entries[@]}")
+
+if [[ -n "$selected" ]]; then
+  (
+  swww img "$selected" --transition-fps 144 --transition-type wipe
+  )
+fi
