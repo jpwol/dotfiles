@@ -20,8 +20,10 @@
     },
     "bar": {
       "width": 10,
-      "borderLeft": "",
-      "borderRight": "",
+      "border": {
+        "left": "",
+        "right": "",
+      },
     },
   },
   "modules": [
