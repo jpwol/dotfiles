@@ -1,61 +1,30 @@
--- ~/.config/nvim/colors/thorn.lua
-
 local M = {}
 
--- Clear existing highlights
-vim.cmd("highlight clear")
 if vim.fn.exists("syntax_on") then
 	vim.cmd("syntax reset")
 end
 
--- Set colorscheme name and background
-vim.o.background = "dark"
-vim.g.colors_name = "thorn"
-
--- Define your palette
-local colors = {
-	bg = "#152326",
-	fg = "#ffffff",
-
-	white = "#D9D3CE",
-	gray = "#91A4AD",
-	green = "#568270",
-	yellow = "#FFCF99",
-	orange = "#F9ADA0",
-	lightblue = "#BBDBD1",
-	lightgreen = "#95C2A1",
-	pink = "#D9ADD4",
-	cyan = "#79C2B6",
-	red = "#D2696C",
-
-	comment = "#568270",
-	statement = "#F9ADA0",
-	identifier = "#BBDBD1",
-	special = "#BBDBD1",
-	delimiter = "#91A4AD",
-	constant = "#FFCF99",
-	str = "#95C2A1",
-	func = "#D9ADD4",
-	types = "#79C2B6",
-	operator = "#D2696C",
-	var = "#D9D3CE",
-	param = "#FFCF99",
-
-	cursorline = "#263338",
-	separator = "#0B1213",
-}
+local colors = require("thorn.colors.thorn-dark")
 
 -- Helper function to set highlights
 local function hi(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)
 end
 
--- Set basic highlight groups
-function M.load()
+-- clear highlights on theme application
+function M.load(opts)
+	if vim.g.colors_name then
+		vim.cmd("hi clear")
+	end
+
+	vim.o.background = "dark"
+	vim.g.colors_name = "thorn"
+
+	-- Set basic highlight groups
 	hi("Normal", { fg = colors.fg, bg = colors.bg })
 	hi("Comment", { fg = colors.comment, italic = true })
-	hi("Constant", { fg = colors.constant })
 
+	hi("Constant", { fg = colors.constant })
 	hi("Function", { fg = colors.func })
 	hi("@lsp.typemod.function.defaultLibrary", { fg = colors.func, italic = true })
 
@@ -91,7 +60,7 @@ function M.load()
 
 	hi("NvimTreeEndOfBuffer", { fg = colors.bg })
 
-	hi("NvimTreeFolderIcon", { fg = colors.lightblue })
+	hi("NvimTreeFolderIcon", { fg = colors.icon })
 end
 
 return M

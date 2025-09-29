@@ -21,7 +21,6 @@ return {
 					-- hl.DiagnosticUnderlineInfo.underline = true
 				end,
 			})
-			-- vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 	{
@@ -29,9 +28,5 @@ return {
 		name = "thorn",
 		lazy = false,
 		priority = 1000,
-
-		config = function()
-			vim.cmd([[colorscheme thorn]])
-		end,
 	},
 }

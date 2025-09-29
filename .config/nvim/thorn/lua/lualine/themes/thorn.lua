@@ -1,4 +1,4 @@
-local colors = require("thorn.colors")
+local colors = require("thorn.colors.colors")
 
 return {
 	normal = {
