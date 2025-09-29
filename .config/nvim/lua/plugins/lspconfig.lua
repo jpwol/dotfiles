@@ -48,6 +48,7 @@ return {
 					"rust_analyzer",
 					"sqls",
 					"vue_ls",
+					"vtsls",
 				},
 			})
 
@@ -307,6 +308,11 @@ return {
 						},
 					},
 				},
+			})
+			vim.lsp.config("omnisharp_mono", {
+				capabilities = capabilities,
+				cmd = { "omnisharp-mono", "--languageserver" },
+				root_dir = vim.fs.dirname(vim.fs.find({ "*.sln", "*.csproj", ".git" }, { upward = true })[1]),
 			})
 
 			local vue_ls_path = "/usr/lib/node_modules/@vue/language-server"
