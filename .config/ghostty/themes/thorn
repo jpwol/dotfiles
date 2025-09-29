@@ -1,0 +1,21 @@
+palette = 0=152326
+palette = 1=FF5B61
+palette = 2=81DEB7
+palette = 3=FFCF99
+palette = 4=95E7CD
+palette = 5=D59CCE
+palette = 6=F9ADA1
+palette = 7=91A4AD
+palette = 8=263338
+palette = 9=D48588
+palette = 10=95C2A1
+palette = 11=FDD9AF
+palette = 12=BBDBD1
+palette = 13=D9ADD4
+palette = 14=FFC4BB
+palette = 15=ffffff
+
+background = 152326
+foreground = ffffff
+selection-background = 263338
+selection-foreground = ffffff
