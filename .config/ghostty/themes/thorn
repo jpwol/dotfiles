@@ -13,9 +13,9 @@ palette = 11=FDD9AF
 palette = 12=BBDBD1
 palette = 13=D9ADD4
 palette = 14=FFC4BB
-palette = 15=ffffff
+palette = 15=D9D3CE
 
 background = 152326
-foreground = ffffff
+foreground = D9D3CE
 selection-background = 263338
 selection-foreground = ffffff
