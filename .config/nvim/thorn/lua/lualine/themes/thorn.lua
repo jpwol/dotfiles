@@ -4,7 +4,7 @@ return {
 	normal = {
 		a = { bg = colors.lightgreen, fg = colors.bg, gui = "bold" },
 		b = { bg = colors.cursorline, fg = colors.lightgreen },
-		c = { bg = colors.separator, fg = colors.fg },
+		c = { bg = colors.statusbar, fg = colors.gray },
 	},
 	insert = {
 		a = { bg = colors.orange, fg = colors.bg, gui = "bold" },

@@ -1,6 +1,9 @@
 local colors = require("thorn.colors.colors")
 
 return {
+	bg = colors.bg,
+	fg = colors.fg,
+
 	comment = colors.green,
 	statement = colors.orange,
 	identifier = colors.lightblue,
