@@ -9,6 +9,7 @@ return {
   green1 = "#9EBB9C",
   yellow = "#FFD7AA",
   yellow0 = "#F7B982",
+  yellow1 = "#E8D2A7",
   orange = "#F9ADA0",
   orange0 = "#E5B08F",
   blue = "#86BFD0",

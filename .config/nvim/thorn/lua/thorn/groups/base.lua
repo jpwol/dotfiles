@@ -73,7 +73,7 @@ function M.get(c)
     WinBarNC                    = "StatusLineNC",
     Bold                        = { bold = true, fg = c.fg },
     Character                   = { fg = c.green },
-    Constant                    = { fg = c.yellow0 },
+    Constant                    = { fg = c.yellow },
     Debug                       = { fg = c.orange },
     Delimiter                   =  "Special",
     Error                       = { fg = c.red0 },
@@ -88,7 +88,7 @@ function M.get(c)
     Statement                   = { fg = c.orange },
     String                      = { fg = c.lightgreen, italic = true }, -- left off here
     Todo                        = { bg = c.yellow, fg = c.bg },
-    Type                        = { fg = c.cyan0 },
+    Type                        = { fg = c.cyan },
     Underlined                  = { underline = true },
     debugBreakpoint             = { },
     debugPC                     = { bg = c.bg_sidebar },
