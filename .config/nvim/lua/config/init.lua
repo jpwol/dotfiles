@@ -3,4 +3,4 @@ require("config.options")
 require("config.terminal")
 require("config.lazy")
 
-vim.cmd([[colorscheme thorn]])
+vim.cmd([[colorscheme thorn-dark]])
