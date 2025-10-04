@@ -14,6 +14,7 @@ function M.get(c)
     NvimTreeOpenedFile   = { bg = c.cursorline },
     NvimTreeRootFolder   = { fg = c.lightgreen, bold = true },
     NvimTreeSpecialFile  = { fg = c.pink, underline = true },
+    NvimTreeExecFile     = { fg = c.cyan },
     NvimTreeSymlink      = { fg = c.gray },
     NvimTreeWinSeparator = { fg = c.separator },
   }
