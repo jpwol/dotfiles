@@ -65,7 +65,7 @@ function M.get(c)
     ["@markup.strikethrough"]       = { strikethrough = true },
     ["@markup.strong"]              = { bold = true },
     ["@markup.underline"]           = { underline = true },
-    ["@module"]                     = "Include",
+    ["@module"]                     = {fg = c.cyan0},
     ["@module.builtin"]             = { fg = c.red },
     ["@namespace.builtin"]          = "@variable.builtin",
     ["@none"]                       = {},

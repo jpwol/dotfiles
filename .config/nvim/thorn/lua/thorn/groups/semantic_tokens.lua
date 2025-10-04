@@ -16,7 +16,7 @@ function M.get(c)
     ["@lsp.type.keyword"]                      = "@keyword",
     ["@lsp.type.lifetime"]                     = "@keyword.storage",
     ["@lsp.type.macro"]                        = "Constant",
-    ["@lsp.type.namespace"]                    = {fg = c.cyan0},
+    ["@lsp.type.namespace"]                    = "@module",
     ["@lsp.type.namespace.python"]             = "@variable",
     ["@lsp.type.number"]                       = "@number",
     ["@lsp.type.operator"]                     = "@operator",
