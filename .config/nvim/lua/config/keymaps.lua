@@ -44,3 +44,12 @@ keymap("x", "<leader>p", '"_dP')
 -- Increment number remap to work with multiplexer keybind
 keymap({ "n", "v" }, "<C-i>", "<C-a>", { desc = "Remap increment number" })
 keymap("v", "g<C-i>", "g<C-a>", { desc = "Remap increment vblock numbers" })
+
+-- BufferLine.nvim keymaps
+keymap("n", "<leader>tt", "<cmd>BufferLinePick<CR>")
+keymap("n", "<leader>tn", "<cmd>BufferLineCycleNext<CR>")
+keymap("n", "<leader>tp", "<cmd>BufferLineCyclePrev<CR>")
+keymap("n", "<leader>tc", "<cmd>BufferLinePickClose<CR>")
+keymap("n", "<leader>th", "<cmd>BufferLineCloseLeft<CR>")
+keymap("n", "<leader>tl", "<cmd>BufferLineCloseRight<CR>")
+keymap("n", "<leader>to", "<cmd>BufferLineCloseOthers<CR>")
