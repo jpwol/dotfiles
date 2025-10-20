@@ -3,7 +3,7 @@ local map = require("lua.lib").map
 
 local wp_count = 9
 local wp_button_size = 15
-local wp_button_thickness = 3.5
+local wp_button_thickness = 2.5
 local wp_button_size_css = rem(35)
 
 return function()
@@ -81,6 +81,11 @@ return function()
 						cr:set_line_width(thickness)
 						cr:set_source_rgba(GdkRGBA.red, GdkRGBA.green, GdkRGBA.blue, GdkRGBA.alpha)
 						cr:arc(size / 2, size / 2, radius, 0, 2 * math.pi)
+						-- cr:stroke()
+						self:hook(hypr, "event", function()
+							local c = hypr.focused_workspace
+							cr:fill()
+						end)
 						cr:stroke()
 					end,
 				}),
