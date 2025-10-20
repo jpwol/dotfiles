@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+current_dir=$(pwd)
+dot_dir="$HOME/dotfiles"
+
+cd "$dot_dir" || exit 1
+git pull
+cd "$current_dir" || exit 1
