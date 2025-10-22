@@ -1,24 +1,21 @@
 #window {
   font-size: 15px;
   font-family: "JetBrainsMono NF";
-  /* background-color: rgba(45, 53, 59, 0.9); */
-  background-color: rgba(31, 35, 53, 1);
-  color: #ff0000;
-  /* border-radius: 0px; */
+  background-color: #152326;
 }
 
 #input {
   margin: 8px;
   border-radius: 5px;
   border: none;
-  background-color: #3d59a1;
-  color: #c0caf5;
+  background-color: #203336;
+  color: #dbd0c6;
   font-weight: bold;
   box-shadow: none;
 }
 
 #outer-box {
-  border: 3px solid #394b70;
+  border: 3px solid #96c2a1;
   border-radius: 0px;
 }
 
@@ -28,8 +25,8 @@
 
 #entry:selected {
   border-radius: 5px;
-  background: #7aa2f7;
-  color: #2d353b;
+  background: #1d3034;
+  color: #dbd0c6;
   outline: none;
   margin: 0px 10px 0px 10px;
 }
@@ -37,9 +34,9 @@
 #text {
   font-weight: bold;
   padding: 0px 10px 0px 10px;
-  color: #7aa2f7;
+  color: #568270;
 }
 
 #text:selected {
-  color: #292e42;
+  color: #dbd0c6;
 }
