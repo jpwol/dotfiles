@@ -31,7 +31,7 @@ switch = function(element)
 		local args = { ... }
 		assert(type(args[#args]) == "function")
 		local callback = table.remove(args, #args)
-		for _, arg in ipars(args) do
+		for _, arg in ipairs(args) do
 			Table.Functions[arg] = callback
 		end
 		return Table
