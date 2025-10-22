@@ -16,7 +16,7 @@
   "include": ["~/.config/waybar/modules.jsonc"],
 
   // Choose the order of the modules
-  "modules-left": ["sway/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
     "pulseaudio",

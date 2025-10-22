@@ -23,13 +23,13 @@ window#waybar {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   border: 2px solid @fg;
-  border-radius: 20px;
+  border-radius: 0px;
   min-height: 0px;
 }
 
 #workspaces button {
   background-color: @bg;
-  border-radius: 20px;
+  border-radius: 0px;
   border: 2px solid @fg;
   margin: 5px 5px 5px 5px;
   padding: 0 0 0 0;
@@ -39,12 +39,12 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  background: @purple;
-  border: 2px solid @purple;
+  background: @green;
+  border: 2px solid @green;
 }
 
-#workspaces button.focused {
-  background: @fg;
+#workspaces button.active {
+  background-color: @fg;
   border: 2px solid @fg;
   min-width: 25px;
   /* min-height: 17px; */
@@ -86,9 +86,10 @@ window#waybar {
   background-color: @bg;
   color: @font;
   border: 2px solid @fg;
-  border-radius: 20px;
+  border-radius: 0px;
   margin: 0 0 0 0;
-  padding: 0 8px 0 8px;
+  padding: 4px 8px 0 8px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -106,10 +107,12 @@ label:focus {
 #pulseaudio {
   background-color: @bg;
   color: @font;
-  border: 2px solid @fg;
-  border-radius: 20px;
-  margin: 0 5px 0 0;
-  padding: 0 8px 0 8px;
+  border-top: 2px solid @fg;
+  border-left: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  border-radius: 0px;
+  margin: 0 0px 0 0;
+  padding: 0 15px 0 8px;
   font-weight: bold;
 }
 
@@ -125,10 +128,10 @@ label:focus {
 #network {
   background-color: @bg;
   color: @font;
-  border: 2px solid @fg;
-  border-radius: 20px;
-  margin: 0 5px 0 5px;
-  padding: 0 7px 0 8px;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 0px 0 0px;
+  padding: 0 15px 0 8px;
   font-weight: bold;
 }
 
@@ -144,11 +147,9 @@ label:focus {
   background-color: @bg;
   color: @font;
   border-top: 2px solid @fg;
-  border-left: 2px solid @fg;
   border-bottom: 2px solid @fg;
-  border-radius: 20px 0px 0px 20px;
-  margin: 0 0 0 5px;
-  padding: 0 5px 0 5px;
+  margin: 0 0 0 0px;
+  padding: 0 10px 0 8px;
   font-weight: bold;
 }
 
@@ -159,7 +160,7 @@ label:focus {
   border-bottom: 2px solid @fg;
   font-weight: bold;
   margin: 0 0 0 0;
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 5px;
 }
 
 #cpu {
@@ -169,18 +170,16 @@ label:focus {
   border-bottom: 2px solid @fg;
   font-weight: bold;
   margin: 0 0 0 0;
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 5px;
 }
 
 #temperature {
   background-color: @bg;
   color: @font;
   border-top: 2px solid @fg;
-  border-right: 2px solid @fg;
   border-bottom: 2px solid @fg;
-  border-radius: 0px 20px 20px 0px;
-  margin: 0 5px 0 0;
-  padding: 0 8px 0 5px;
+  margin: 0 0px 0 0;
+  padding: 0 15px 0 5px;
   font-weight: bold;
 }
 
@@ -190,10 +189,11 @@ label:focus {
 
 #tray {
   background-color: @bg;
-  border: 2px solid @fg;
-  border-radius: 20px;
-  margin: 0 5px 0 5px;
-  padding: 0 7px 0 7px;
+  border-top: 2px solid @fg;
+  border-right: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 5px 0 0px;
+  padding: 0 8px 0 8px;
 }
 
 #tray > .passive {
