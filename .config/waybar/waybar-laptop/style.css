@@ -114,12 +114,24 @@ window#waybar {
   padding: 0 8px 0 4px;
 }
 
+#battery.warning {
+  color: @yellow;
+}
+
+#battery.critical {
+  color: @red;
+}
+
 #backlight {
   color: @aqua;
   border-width: 3px 0 3px 0;
   border-style: solid;
   margin: 0 0px 0 0px;
   padding: 0 8px 0 4px;
+}
+
+#backlight:hover {
+  color: @fg;
 }
 
 #tray {
