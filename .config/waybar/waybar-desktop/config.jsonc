@@ -1,30 +1,18 @@
 {
-  // General Settings
-
-  "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 16, // Waybar height (to be removed for auto height)
-  "spacing": 0, // Gaps between modules (4px)
-  "margin-top": 5,
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 0,
+  "margin-top": 4,
   "margin-bottom": 0,
-  "margin-left": 5,
-  "margin-right": 5,
+  "margin-left": 10,
+  "margin-right": 10,
 
   "output": "DP-1",
 
-  // Load modules
   "include": ["~/.config/waybar/modules.jsonc"],
 
-  // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "pulseaudio",
-    "network",
-    "memory",
-    "disk",
-    "cpu",
-    "temperature",
-    "tray",
-  ],
+  "modules-left": ["clock", "hyprland/workspaces"],
+  "modules-center": ["custom/date", "custom/now-playing"],
+  "modules-right": ["custom/volume", "network", "tray"],
 }
