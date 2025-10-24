@@ -1,4 +1,3 @@
-// Modules configuration
 {
   "hyprland/workspaces": {
     "active-only": false,
@@ -11,18 +10,25 @@
     },
     "persistent-workspaces": {
       "*": 9,
+      "1": ["DP-1"],
+      "2": ["DP-2"],
+      "3": ["DP-3"],
+      "4": ["DP-1"],
+      "5": ["DP-1"],
     },
   },
   "hyprland/window": {
-    "separate-outputs": true,
+    "format": "{initialTitle}",
   },
   "tray": {
-    // "icon-size": 21,
     "spacing": 10,
   },
   "clock": {
-    // "timezone": "America/New_York",
-    "format": "{:%I:%M %p}", //12 hour format
+    "format": "[ {:%I:%M %p} ]",
+  },
+  "custom/date": {
+    "exec": "~/.config/waybar/scripts/date.sh",
+    "interval": 21600,
   },
   "memory": {
     "format": "{}% ",
@@ -37,60 +43,59 @@
     "interval": 30,
     "tooltip": false,
   },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""],
-    "interval": 30,
-  },
   "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ",
+    "format-wifi": "[ {essid}   ]",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ipaddr}",
+    "format-disconnected": "[ disconnected ⚠ ]",
+    "format-alt": "[ {ipaddr} ]",
   },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰝟  {volume}%",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "󰋋  ",
-      "hands-free": "",
-      "headset": "󰋋  ",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["󰕿 ", "󰖀 ", "󰕾 "],
-    },
-    "on-click": "pwvucontrol",
-  },
-  "custom/media": {
-    "format": "{icon} {}",
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
     "return-type": "json",
-    "max-length": 40,
+    "interval": 1,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+  },
+  "custom/now-playing": {
+    "format": "{}",
+    "interval": 2,
+    "exec": "~/.config/waybar/scripts/now-playing.sh",
+    "return-type": "text",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+  },
+  "battery": {
+    "format": "[ {icon} {capacity}% ]",
     "format-icons": {
-      "spotify": "",
-      "default": "🎜",
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     },
-    "escape": true,
-    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
-    // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    "format-full": "[ Charged  ]",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10,
+    },
+    "tooltip": true,
   },
-  "custom/separator": {
-    "format": "  ",
+  "backlight": {
+    "format": "[ 󰛨 {percent}% ]",
+    "format-icons": ["󰃞", "󰃟", "󰃠", "󰃝", "󰃜", "󰃛"],
+    "class": "flicker-bar",
+    "on-click": "~/.config/waybar/scripts/brightness-slider.sh",
+    "on-scroll-up": "brightnessctl set +2%",
+    "on-scroll-down": "brightnessctl set 2%-",
   },
-  "custom/launcher": {
-    "format": " 󰣇 ",
-    // "on-click": "rofi -show drun",
+  "custom/brightness": {
+    "exec": "~/.config/waybar/scripts/brightness.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "~/.config/waybar/scripts/brightness-toggle.sh",
+    "on-scroll-up": "brightnessctl set +2%",
+    "on-scroll-down": "brightnessctl set 2%-",
   },
 }
