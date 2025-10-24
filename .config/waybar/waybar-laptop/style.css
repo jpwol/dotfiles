@@ -3,12 +3,14 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  /* font-size: 13px; */
 }
 
 window#waybar {
   background-color: transparent;
-  border-radius: 20px;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border-radius: 0px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -18,31 +20,37 @@ window#waybar {
 #workspaces {
   background-color: @bg;
   margin: 0 0 0 0;
-  border-radius: 20px;
+  padding: 0 0 0 0;
+  border: 2px solid @fg;
+  border-radius: 0px;
   min-height: 0px;
-  padding: 5px 4px 5px 4px;
 }
+
 #workspaces button {
-  background-color: #859289;
-  border-radius: 20px;
-  margin: 0 2px 0 2px;
-  padding: 0;
+  background-color: @bg;
+  border-radius: 0px;
+  border: 2px solid @fg;
+  margin: 5px 5px 5px 5px;
+  padding: 0 0 0 0;
   color: #ffffff;
-  min-height: 20px;
-  min-width: 20px;
+  min-height: 10px;
+  min-width: 13px;
 }
 
 #workspaces button:hover {
-  background: #d3c6aa;
+  background: @green;
+  border: 2px solid @green;
 }
 
-#workspaces button.focused {
-  background-color: #9da9a0;
-  min-width: 50px;
+#workspaces button.active {
+  background-color: @fg;
+  border: 2px solid @fg;
+  min-width: 25px;
+  /* min-height: 17px; */
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  border: 2px solid @red;
 }
 
 #mode {
@@ -65,7 +73,7 @@ window#waybar {
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 4px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -76,9 +84,11 @@ window#waybar {
 #clock {
   background-color: @bg;
   color: @font;
+  border: 2px solid @fg;
+  border-radius: 0px;
   margin: 0 0 0 0;
-  border-radius: 20px;
-  padding: 0 10px 0 10px;
+  padding: 0 8px 0 8px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -96,14 +106,18 @@ label:focus {
 #pulseaudio {
   background-color: @bg;
   color: @font;
-  border-radius: 20px;
-  padding: 0 10px 0 10px;
+  border-top: 2px solid @fg;
+  border-left: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  border-radius: 0px;
+  margin: 0 0px 0 0;
+  padding: 0 15px 0 8px;
   font-weight: bold;
-  margin: 0 5px 0 0;
 }
 
 #pulseaudio.muted {
-  color: @blue;
+  background: @blue;
+  color: @bg;
 }
 
 #pulseaudio:hover {
@@ -113,9 +127,10 @@ label:focus {
 #network {
   background-color: @bg;
   color: @font;
-  border-radius: 20px;
-  margin: 0 5px 0 5px;
-  padding: 0 7px 0 9px;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 0px 0 0px;
+  padding: 0 15px 0 8px;
   font-weight: bold;
 }
 
@@ -130,65 +145,54 @@ label:focus {
 #memory {
   background-color: @bg;
   color: @font;
-  border-radius: 20px 0 0 20px;
-  margin: 0 0 0 5px;
-  padding: 0 5px 0 7px;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 0 0 0px;
+  padding: 0 10px 0 8px;
   font-weight: bold;
 }
 
 #disk {
   background-color: @bg;
   color: @font;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
   font-weight: bold;
-  padding: 0 5px 0 5px;
   margin: 0 0 0 0;
+  padding: 0 10px 0 5px;
 }
 
 #cpu {
   background-color: @bg;
   color: @font;
-  border-radius: 0 20px 20px 0;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
   font-weight: bold;
-  margin: 0 5px 0 0;
-  padding: 0 7px 0 5px;
+  margin: 0 0 0 0;
+  padding: 0 10px 0 5px;
 }
 
 #temperature {
   background-color: @bg;
   color: @font;
-  padding: 0 0 0 5px;
+  border-top: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 0px 0 0;
+  padding: 0 15px 0 5px;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 #temperature.critical {
   background-color: #eb4d4b;
 }
 
-#battery {
-  background-color: @bg;
-  color: @font;
-  border-radius: 20px;
-  padding: 0 7px 0 10px;
-  font-weight: bold;
-  margin: 0 3px 0 0;
-}
-
-#custom-media {
-  background-color: #66cc99;
-  color: #2a5c45;
-  min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-  background-color: #66cc99;
-}
-
 #tray {
   background-color: @bg;
-  color: @font;
-  border-radius: 20px;
-  padding: 0 10px 0 10px;
+  border-top: 2px solid @fg;
+  border-right: 2px solid @fg;
+  border-bottom: 2px solid @fg;
+  margin: 0 5px 0 0px;
+  padding: 0 8px 0 8px;
 }
 
 #tray > .passive {
@@ -215,7 +219,7 @@ label:focus {
 
 #custom-launcher {
   color: @font;
-  font-size: 20px;
+  font-size: 0px;
 }
 
 #custom-launcher:hover {

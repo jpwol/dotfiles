@@ -1,19 +1,19 @@
 // Modules configuration
 {
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "active-only": false,
     "all-outputs": true,
-    "format": "{}",
+    "format": "",
     "format-icons": {
       "urgent": "",
       "focused": "",
       "default": "",
     },
-    "persistant-workspaces": {
-      "*": 5,
+    "persistent-workspaces": {
+      "*": 9,
     },
   },
-  "sway/window": {
+  "hyprland/window": {
     "separate-outputs": true,
   },
   "tray": {
@@ -22,31 +22,7 @@
   },
   "clock": {
     // "timezone": "America/New_York",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
-      },
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-click-forward": "tz_up",
-      "on-click-backward": "tz_down",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down",
-    },
-    "format": "  {:%a %d %b   󰥔  %I:%M %p}", //12 hour format
-    "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
-    "interval": 1,
+    "format": "{:%I:%M %p}", //12 hour format
   },
   "memory": {
     "format": "{}% ",
@@ -84,7 +60,7 @@
     "format": "{icon} {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰝟 {volume}%",
+    "format-muted": "󰝟  {volume}%",
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
@@ -94,19 +70,9 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": ["󰕿 ", "󰖀 ", "󰕾 "],
     },
-    "on-click": "pavucontrol",
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15,
-    },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󱐋 {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "on-click": "pwvucontrol",
   },
   "custom/media": {
     "format": "{icon} {}",
@@ -120,12 +86,11 @@
     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources folder
     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
   },
-
   "custom/separator": {
     "format": "  ",
   },
   "custom/launcher": {
     "format": " 󰣇 ",
-    "on-click": "rofi -show drun",
+    // "on-click": "rofi -show drun",
   },
 }
