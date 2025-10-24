@@ -28,6 +28,7 @@
   },
   "custom/date": {
     "exec": "~/.config/waybar/scripts/date.sh",
+    "interval": 21600,
   },
   "memory": {
     "format": "{}% ",
