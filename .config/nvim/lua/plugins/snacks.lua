@@ -10,7 +10,7 @@ return {
 		dashboard = { enabled = true },
 		explorer = { enabled = true },
 		indent = {
-			enabled = false,
+			enabled = true,
 			animate = { enabled = false },
 		},
 		input = { enabled = true },
@@ -45,6 +45,9 @@ return {
     { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+
+    -- git
+    { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
 
     -- Diagnostics
     { "<leader>xw", function() Snacks.picker.diagnostics() end, desc = "Diagnostics", },
