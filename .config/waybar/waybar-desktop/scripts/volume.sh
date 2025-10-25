@@ -28,8 +28,8 @@ fi
 # ASCII bar
 filled=$((vol_int / 10))
 empty=$((10 - filled))
-bar=$(printf '█%.0s' $(seq 1 $filled))
-pad=$(printf '░%.0s' $(seq 1 $empty))
+bar=$(printf '#%.0s' $(seq 1 $filled))
+pad=$(printf '.%.0s' $(seq 1 $empty))
 ascii_bar="[$bar$pad]"
 
 # Color logic
