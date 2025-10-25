@@ -1,7 +1,7 @@
 local terminal_buf = nil
 
-function setTerm()
-	local os_name = vim.loop.os_uname().sysname
+function SetTerm()
+	local os_name = vim.uv.os_uname().sysname
 	if os_name == "Windows_NT" then
 		vim.opt.shell = "pwsh"
 		vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
@@ -16,7 +16,7 @@ function setTerm()
 	end
 end
 
-setTerm()
+SetTerm()
 
 vim.api.nvim_create_user_command("ToggleTerminal", function()
 	if terminal_buf and vim.api.nvim_buf_is_valid(terminal_buf) then
