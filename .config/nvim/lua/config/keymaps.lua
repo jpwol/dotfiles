@@ -14,8 +14,8 @@ keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap("n", "<leader>sp", "<C-w>x", { desc = "Swap current window with the next" })
 keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
-keymap("n", ".", "<C-w>>", { desc = "Increase vertical split size" })
-keymap("n", ",", "<C-w><", { desc = "Increase vertical split size" })
+-- keymap("n", ".", "<C-w>>", { desc = "Increase vertical split size" })
+-- keymap("n", ",", "<C-w><", { desc = "Increase vertical split size" })
 
 -- Do tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
