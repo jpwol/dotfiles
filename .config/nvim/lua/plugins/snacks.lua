@@ -14,7 +14,18 @@ return {
 			animate = { enabled = false },
 		},
 		input = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			sources = {
+				explorer = {
+					layout = {
+						layout = {
+							width = 30,
+						},
+					},
+				},
+			},
+		},
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
