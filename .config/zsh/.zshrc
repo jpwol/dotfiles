@@ -47,6 +47,7 @@ alias vi='nvim'
 alias fvpn='sudo openfortivpn -c /etc/openfortivpn/config'
 alias jup='jupyter notebook > /dev/null 2>&1 &'
 alias clisp='clisp -q'
+alias cd='z'
 
 # Shell Integrations
 eval "$(fzf --zsh)"
@@ -79,8 +80,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
+
 # Load completions. IDK why this has to be last but it doesn't work otherwise
 autoload -U compinit && compinit
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+
+eval "$(zoxide init zsh)"
