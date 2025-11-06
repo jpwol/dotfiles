@@ -1,3 +1,12 @@
+local function modified()
+	if vim.bo.modified then
+		return "+"
+	elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+		return "-"
+	end
+	return ""
+end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -13,7 +22,10 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff" },
-				lualine_c = { "filename" },
+				lualine_c = {
+					{ "filename", file_status = false, path = 1 },
+					{ modified, color = { fg = "#79C2B6" } },
+				},
 				lualine_x = {
 					"diagnostics",
 					{
