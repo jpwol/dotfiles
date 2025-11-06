@@ -10,6 +10,8 @@ opt.autoindent = true
 
 opt.cursorline = true
 
+opt.updatetime = 60
+
 opt.wrap = true
 
 opt.ignorecase = true
