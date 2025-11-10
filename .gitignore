@@ -5,3 +5,4 @@ lazy-lock.json
 .config/zsh/zhistory
 .config/zsh/.zcompdump
 .scripts/sshwilkes
+btop.conf
