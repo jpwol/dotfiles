@@ -14,5 +14,5 @@
 
   "modules-left": ["clock", "hyprland/workspaces"],
   "modules-center": ["custom/date", "custom/now-playing"],
-  "modules-right": ["custom/volume", "network", "backlight", "battery", "tray"],
+  "modules-right": ["custom/volume", "backlight", "battery", "tray"],
 }
