@@ -7,9 +7,7 @@ return {
 		"jpwol/thorn.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			transparent = true,
-		},
+		opts = {},
 	},
 	{
 		"neanias/everforest-nvim",
