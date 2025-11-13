@@ -200,7 +200,7 @@
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=204
 
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='%F{81}❙%F{141}❙%F{3}❙%f'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='%F{8}❙%F{2}❙%F{8}❙%f'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_CONTENT_EXPANSION='%F{1}❙%F{9}❙%F{1}❙%f'
 
   # Prompt symbol in command vi mode.
@@ -219,7 +219,7 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=117
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=2
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
@@ -381,10 +381,10 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'     # default foreground
-      local      clean='%114F'   # green foreground
-      local   modified='%178F'  # yellow foreground
-      local  untracked='%141F'   # blue foreground
-      local conflicted='%204F'  # red foreground
+      local      clean='%14F'   # green foreground
+      local   modified='%11F'  # yellow foreground
+      local  untracked='%5F'   # blue foreground
+      local conflicted='%9F'  # red foreground
     else
       # Styling for incomplete and stale Git status.
       local       meta='%244F'  # grey foreground
