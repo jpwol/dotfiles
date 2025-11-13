@@ -78,6 +78,12 @@ eval "$(pyenv init - zsh)"
 
 
 # Load completions. IDK why this has to be last but it doesn't work otherwise
+
+fpath=(
+  $HOME/.local/share/zsh/site-functions/
+  $fpath
+)
+
 autoload -U compinit && compinit
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
