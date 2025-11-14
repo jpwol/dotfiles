@@ -32,7 +32,7 @@ vim.api.nvim_create_user_command("ToggleTerminal", function()
 		vim.api.nvim_command("botright split")
 		terminal_buf = vim.api.nvim_create_buf(false, true)
 		vim.api.nvim_win_set_buf(0, terminal_buf)
-		vim.fn.termopen(vim.o.shell)
+		vim.fn.jobstart(vim.o.shell, { term = true })
 		vim.api.nvim_win_set_height(0, 10)
 	end
 end, {})
