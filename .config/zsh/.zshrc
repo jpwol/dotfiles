@@ -12,6 +12,9 @@ export XCURSOR_THEME="BreezeX-RosePine-Linux"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/bin/scripts:$PATH
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 # Set the history file and settings
 export HISTFILE=${ZDOTDIR}/zhistory
 export HISTSIZE=10000
