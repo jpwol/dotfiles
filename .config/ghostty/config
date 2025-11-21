@@ -10,16 +10,14 @@ font-style-italic = SemiBold Italic
 # ------------Window------------- #
 window-theme = ghostty
 window-colorspace = display-p3
-window-decoration = false
-
-# ------------Hide Tabs------------- #
-gtk-titlebar = false
-gtk-tabs-location = hidden
+window-decoration = none
 
 # ------------Shell Integration------------- #
 shell-integration = zsh
 shell-integration-features = no-cursor
 
+# ------------Hide Tabs------------ #
+gtk-tabs-location = hidden
 
 # ------------Cursor------------- #
 cursor-style = block
