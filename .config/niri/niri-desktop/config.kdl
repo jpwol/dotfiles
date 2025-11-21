@@ -127,7 +127,7 @@ animations {
 // Global window rules
 window-rule {
   draw-border-with-background false
-  geometry-corner-radius 3
+  geometry-corner-radius 5
   clip-to-geometry true
 }
 
@@ -154,6 +154,7 @@ binds {
 
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+Space hotkey-overlay-title="Run an Application: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+B     hotkey-overlay-title="Toggle bar: noctalia-shell" {spawn-sh "qs -c noctalia-shell ipc call bar toggle";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: loginctl" { spawn "loginctl" "lock-session"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
