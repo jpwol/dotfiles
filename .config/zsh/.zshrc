@@ -47,6 +47,7 @@ alias fvpn='sudo openfortivpn -c /etc/openfortivpn/config'
 alias jup='jupyter notebook > /dev/null 2>&1 &'
 alias clisp='clisp -q'
 alias cd='z'
+alias ssh='TERM=xterm-256color ssh'
 
 # Shell Integrations
 eval "$(fzf --zsh)"
