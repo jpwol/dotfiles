@@ -10,6 +10,6 @@
 # Don't forget to run 'sudo pacman -Scc'/'yay -Scc'
 # and 'sudo journalctl --vacuum-size=200M' every now and then!
 
-LOCATION=$1
+LOCATION=${1:-"/"}
 
 sudo du -x -h --max-depth=1 "$LOCATION" | sort -rh | head -20
