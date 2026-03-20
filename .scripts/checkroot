@@ -5,7 +5,10 @@
 #
 # start with '/' as the argument, as then traverse subdirectories
 # by rerunning with their names, for example 'checkroot /usr' and 
-# so on
+# so on.
+#
+# Don't forget to run 'sudo pacman -Scc'/'yay -Scc'
+# and 'sudo journalctl --vacuum-size=200M' every now and then!
 
 LOCATION=$1
 
