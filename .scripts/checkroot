@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Use this script to check what's taking up the most
+# space on the root partition.
+#
+# start with '/' as the argument, as then traverse subdirectories
+# by rerunning with their names, for example 'checkroot /usr' and 
+# so on
+
+LOCATION=$1
+
+sudo du -x -h --max-depth=1 "$LOCATION" | sort -rh | head -20
