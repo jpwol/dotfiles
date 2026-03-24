@@ -1,5 +1,6 @@
 lazy-lock.json
 .config/zsh/.antidote
+.config/zsh/.zsh_plugins.zsh
 .config/zsh/zsh-bench
 .config/tmux/plugins/*
 .config/zsh/zhistory
