@@ -23,6 +23,11 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
+cursor {
+  xcursor-theme "BreezeX-RosePine-Linux"
+  xcursor-size 30
+}
+
 output "DP-1" {
     mode "2560x1440@164.802"
     position x=0 y=0
