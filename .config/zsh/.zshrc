@@ -6,9 +6,6 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
-export GTK_THEME="Tokyonight-Dark"
-export XCURSOR_THEME="BreezeX-RosePine-Linux"
-
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/bin/scripts:$PATH
 
