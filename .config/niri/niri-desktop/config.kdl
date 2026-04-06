@@ -150,7 +150,7 @@ window-rule {
 // Windows to be opened floating
 window-rule {
   match app-id=r#"^steam$"# title="^Friends List$"
-  match app-id="thunar"
+  match app-id="Nautilus$"
 
   open-floating true
 }
@@ -306,9 +306,9 @@ binds {
     // Expel the bottom window from the focused column to the right.
     Mod+Period { expel-window-from-column; }
 
-    Mod+R { switch-preset-column-width; }
+    // Mod+R { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
-    // Mod+R { switch-preset-column-width-back; }
+    Mod+R { switch-preset-column-width-back; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
