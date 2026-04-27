@@ -60,7 +60,7 @@ overview{
 }
 
 layout {
-    gaps 10
+    gaps 20
 
     center-focused-column "never"
 
@@ -76,7 +76,8 @@ layout {
     }
 
     border {
-        width 3
+      off
+      width 3
         active-color "#95C2A1"
         inactive-color "#568270"
 
@@ -84,19 +85,17 @@ layout {
     }
 
     shadow {
-        // Uncomment the next line to enable shadows.
-        // on
+        on
 
-        softness 30
+        softness 20
 
-        // Spread expands the shadow.
-        spread 5
+        spread 2
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        offset x=0 y=0
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        color "#00000040"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
