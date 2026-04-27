@@ -43,7 +43,7 @@ layer-rule {
 }
 
 layout {
-  gaps 10
+  gaps 20
 
   center-focused-column "never"
 
@@ -77,18 +77,18 @@ layout {
 
     softness 20
 
-    spread 5
+    spread 2
 
-    offset x=0 y=10
+    offset x=0 y=0
 
-    color "#0007"
+    color "#00000040"
   }
 
   struts {
-    // left 64
-    // right 64
-    // top 64
-    // bottom 64
+    // left 10
+    // right 10
+    // top 20
+    // bottom 10
   }
 
   insert-hint {
