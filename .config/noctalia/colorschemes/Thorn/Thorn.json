@@ -11,11 +11,11 @@
     "mSurface": "#152326",
     "mOnSurface": "#B2C7B5",
     "mSurfaceVariant": "#0F1A1C",
-    "mOnSurfaceVariant": "#DBD0C6",
+    "mOnSurfaceVariant": "#90AD96",
     "mOutline": "#234847",
     "mShadow": "#111F22",
-    "mHover": "#79C2B6",
-    "mOnHover": "#111F22",
+    "mHover": "#38524F",
+    "mOnHover": "#B2C7B5",
     "terminal": {
       "normal": {
         "black": "#152326",
