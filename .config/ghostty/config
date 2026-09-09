@@ -13,7 +13,7 @@ font-style-italic = SemiBold Italic
 # ------------Window------------- #
 window-theme = ghostty
 window-colorspace = display-p3
-window-decoration = none
+# window-decoration = none
 
 # ------------Shell Integration------------- #
 shell-integration = zsh
