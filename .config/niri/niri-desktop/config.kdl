@@ -96,6 +96,7 @@ layout {
   }
 }
 
+// spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 qs -c noctalia-shell"
 spawn-at-startup "noctalia"
 
 hotkey-overlay {
