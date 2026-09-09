@@ -154,8 +154,6 @@ binds {
   Mod+B       hotkey-overlay-title="Toggle bar: noctalia-shell" {spawn-sh "noctalia msg bar-toggle";}
   Super+Alt+L hotkey-overlay-title="Lock the Screen: loginctl" { spawn "loginctl" "lock-session"; }
 
-  Mod+Shift+S hotkey-overlay-title="Take a screenshot" { spawn "/home/josh/.local/bin/scripts/screenshot"; }
-
   XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 0.1+"; }
   XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
   XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
