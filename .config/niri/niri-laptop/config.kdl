@@ -52,7 +52,7 @@ output "eDP-1" {
 }
 
 layer-rule {
-  match namespace="^noctalia-overview-eDP-1$"
+  match namespace="^noctalia-backdrop"
   place-within-backdrop true
 }
 
@@ -117,7 +117,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-sh-at-startup "qs -c noctalia-shell"
+spawn-sh-at-startup "noctalia"
 
 hotkey-overlay {
     skip-at-startup
@@ -148,7 +148,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
-    Mod+Space hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Space hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: loginctl" { spawn "loginctl" "lock-session"; }
 
     Mod+Shift+S { spawn "/home/josh/.local/bin/scripts/screenshot"; }
